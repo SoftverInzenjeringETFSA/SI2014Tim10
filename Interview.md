@@ -48,6 +48,19 @@ ZAPISNIK SA INTERVJUA:
 		Što se tiče samog unosa podataka, tu ćete morati imati kontni plan. Mi, u našoj firmi, radimo isključivo sa firmama iz Federacije, sa poslovnim preduzećima. Javna preduzeća imaju jedan kontni plan. Mi radimo isključivo sa preduzećima i treba da podržite samo kontni plan za preduzeća. Da imamo mogućnost promjene kontnog plana, da imamo mogućnost unosa kupaca i dobavljača, odnosno generalnog pojma subanalitike; unos samih naloga i generisanje izvještaja koje smo naveli... Dakle, od izvještaja to bi bila glavna knjiga, dnevnik knjiženja, bruto bilans. Struktura kontnog plana je osnovno što zakon propisuje. Klase konta su klase koje definišu najveći nivo grupisanja. To su klase koje imaju samo jednu cifru. Grupe su sa dvije cifre, a sintetike su sa tri cifre. Zakon ovo propisuje. Sve što ima više cifara, a može imati, se zove analitika i to određuje svaka firma posebno. Šta to znači? Znači sljedeće: “2” kao klasa nam je gotovina – kratkoročna potraživanja – kratkoročni plasmani. “20” – gotovine i gotovinski ekvivalenti. “200” – transakcijski računi. To znači da se svi transakcijski računi vode pod sintetikom 200, ali se nikada ne vode na sintetici, nego se uvijek pravi četverocifren broj. Recimo, 2001 bi mogao biti transakčijski račun Raiffeisen banke, i uvijek se vodi na ovom kontu – 2001, ne vodi se nikada na 200!
 19.1. Da li ćete Vi to unositi (vezano za konta, sintetike itd.)?
 		Treba da postoji mogućnost promjene konta. Treba da pripremite konta. Trebate pripremiti spreman kontni plan da se može koristiti.
+20. Koliko bi ste bili spremni na ulaganje u novu infrastrukturu?
+		Ne puno.
+21. Od koga dobijamo naloge?
+		Knjigovodstveni servis funkcioniše tako što uzima papire od firmi sa kojima radi i na osnovu tih papira se unose konkretni nalozi.
+22. Da li planirate novim korisnicima pružiti neku dodatnu obuku?
+		Ne planira se raditi obuka.
+23. Da li sistem ima još neke specifičnosti?
+		Ne.
+24. Da li imate još nešto da nam kažete, možda nešto što nije obuhvaćeno intervjuom?
+		Ne.
+25. Klasifikacija korisnika sistema?
+		Samo računovođe.
+
 
 
 
