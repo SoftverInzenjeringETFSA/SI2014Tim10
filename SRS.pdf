@@ -1,1 +1,63 @@
 
+Lista korištenih pojmova koje bi čitalac dokumenta trebao da poznaje.
+
+Interface (sučelje)
+Generički naziv za način komunikacije korisnika sa sistemom. Jedan sistem može da ima nekoliko sučelja, tj. nekoliko različitih načina pristupa istom.
+Funkcionalnost
+Zahtijevana akcija koja ima veze sa realnim svijetom koju sistem kroz proces ulaz—obrada—izlaz treba da omogući (automatizuje).
+Funkcionalni zahtjev
+Funkcionalni zahtjevi odnose se na to šta je potrebno napraviti (npr. koje je aktivnosti potrebno izvršiti ili omogućiti).
+Nefunkcionalni zahtjev
+Nefunkcionalni zahtjevi odnose sa na to kako je nešto potrebno napraviti (npr. u skladu sa određenim standardima).
+Modul
+Dio sistema zadužen za specifičan skup međusobno povezanih zadataka (funkcionalnosti). Način podjele sistema na dijelove koji se kasnije uklapaju zajedno.
+Authorization
+Specifikacija prava pristupa resursima povezanima sa sigurnošću informacija i računara općenito.
+Authentication
+Potvrda istinitosti jednog ili više atributa određenog dijela podataka ili entiteta.
+Konto
+(lat. račun). Generički naziv za ...
+Glavna knjiga
+(TODO: dopuniti…) Računovodstvena knjiga u kojoj se hronološkim redoslijedom unose rezultati poslovnih transakcija.
+Subanalitika
+Mehanizam za klasifikaciju u okviru konta; za svaki konto moguće je definisati subanalitiku i onda sistem ne dozvoljava unos tog konta bez subanalitike.
+Dnevnik
+Računovodstvena knjiga u kojoj se hronološkim redoslijedom unose rezultati poslovnih transakcija.
+Deficit
+Količina (obično novca) koja nedostaje da bi se izjednačila neka referentna količina. Drugim riječima: kada su prihodi manji od rashoda.
+Suficit
+Kada su prihodi veći od rashoda.
+Bruto bilans
+Sadrži početno stanje i zbir dugovne i potražne strane svih računa glavne knjige.
+Dugovanje
+Strana konta koja se odnosi na sredstva rashoda i troškova.
+Potraživanje
+Strana konta koja se odnosi na sredstva prihoda.
+Dvostruki knjigovodstveni sistem
+Sistem računovodstva u kojem svaka transakcija izaziva izmjenu računa na dva mjesta — na jednom kao dugovanje, a na drugom kao potraživanje.
+Baza podataka
+Uređena grupa podataka pohranjena na sistematski način tako da računarski program može poslati upit bazi podataka na koji ona odgovara.
+Relacioni model
+Najrašireniji model baza podataka baziran na tabelama, koje predstavljaju entitete stvarnog svijeta, te relacijama — vezama među tim entitetima.
+CLI (Command-Line Interface)
+Interfejs kome se pristupa kucanjem određene komande u odgovarajući red, primanjem odgovora, kucanjem nove komande itd.
+GUI (Graphical User Interface)
+Interfejs kome se pristupa preko grafičkih elemenata na računarskom (i dr.) ekranu. Jednostavniji za koristiti, ali manje funkcionalan od ekvivalentnog command-line interfejsa (CLI).
+Report (Izvještaj)
+(u finansijama) Formalni pregled finansijskih aktivnosti nekog pravnog ili fizičkog lica i drugog obaveznika finansijskog izvještavanja na kraju poslovnog perioda (poslovne godine). Za kompaniju ili preduzeće, sve relevantne informacije predstavljene na jednoobrazan i razumljiv način predstavljaju finansijske izvještaje.
+SQL
+SQL je programski jezik dizajniran sa specijalnom namjenom upravljanja podacima pohranjenima u relacionoj bazi podataka.
+MySQL
+Jedna od implementacija SQL jezika.
+Java
+Programski jezik razvijen od strane Sun Microsystems Inc. Objektno-orijentisan sa filozofijom write once, run anywhere.
+JRE
+Set alatki za programiranje radi razvoja Java aplikacija.
+Deployment
+Sve aktivnosti koje čine softverski sistem mogućim za korištenje. Mogu se izvršavati i od strane proizvođača i od strane naručioca sistema.
+Security model
+Shema specifikacije i implementacije sigurnosne politike.
+IEEE
+Međunarodna neprofitabilna organizacija osnovana 1963. godine zadužena za unaprijeđivanje tehnologija vezanih za elektricitet.
+IEEE standard
+Norme ili zahtjevi, utvrđeni od strane IEEE, koji se odnose na tehničke sisteme. 
