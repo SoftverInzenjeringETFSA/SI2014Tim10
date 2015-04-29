@@ -16,6 +16,7 @@ public class proba extends javax.swing.JFrame {
      */
     public proba() {
         initComponents();
+        //ovdje nesto novo dodano hahu
     }
 
     /**
