@@ -37,7 +37,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.TOP));
 
         jTextField1.setText("Username");
 
