@@ -141,7 +141,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Dodaj"/>
+            <Property name="text" type="java.lang.String" value="Izmjeni"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">

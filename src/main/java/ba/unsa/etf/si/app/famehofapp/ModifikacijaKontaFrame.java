@@ -51,7 +51,7 @@ public class ModifikacijaKontaFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Analitika:");
 
-        jButton1.setText("Dodaj");
+        jButton1.setText("Izmjeni");
 
         jButton2.setText("Odustani");
 
