@@ -48,7 +48,7 @@
 	          <manifest>
 	            <addClasspath>true</addClasspath>
 	            <classpathPrefix>lib/</classpathPrefix>
-	            <mainClass>com.tim10.glavna_knjiga.App</mainClass>
+	            <mainClass>com.tim10.glavna_knjiga.windows.LoginFrame</mainClass>
 	          </manifest>
 	        </archive>
 	      </configuration>

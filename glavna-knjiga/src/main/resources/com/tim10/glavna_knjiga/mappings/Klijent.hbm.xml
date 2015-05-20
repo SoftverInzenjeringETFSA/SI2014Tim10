@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 20, 2015 4:46:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.tim10.glavna_knjiga.mappings.Klijent" table="Klijent" catalog="Tim10">
+        <id name="id" type="int">
+            <column name="Id" />
+            <generator class="assigned" />
+        </id>
+        <property name="naziv" type="string">
+            <column name="Naziv" length="45" />
+        </property>
+        <property name="opis" type="string">
+            <column name="Opis" length="200" />
+        </property>
+        <property name="adresa" type="string">
+            <column name="Adresa" length="45" />
+        </property>
+        <property name="telefon" type="string">
+            <column name="Telefon" length="20" />
+        </property>
+        <property name="fax" type="string">
+            <column name="Fax" length="20" />
+        </property>
+        <property name="tip" type="string">
+            <column name="Tip" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

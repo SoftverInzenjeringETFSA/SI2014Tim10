@@ -9,7 +9,7 @@
   <property name="hibernate.connection.username">EtfSI2014</property>
   <property name="show_sql">true</property>
   <property name="hibernate.connection.password">2014SIEtf</property>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/TblStudenti.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/TblOdsjeci.hbm.xml"/>
+  <mapping resource="com/tim10/glavna_knjiga/mappings/Korisnik.hbm.xml"/>
+  <mapping resource="com/tim10/glavna_knjiga/mappings/KorisnikTipovi.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

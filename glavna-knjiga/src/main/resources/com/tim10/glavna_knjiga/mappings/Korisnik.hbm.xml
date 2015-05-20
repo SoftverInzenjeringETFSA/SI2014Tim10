@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 20, 2015 4:46:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.tim10.glavna_knjiga.mappings.Korisnik" table="Korisnik" catalog="Tim10">
+        <id name="id" type="int">
+            <column name="Id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="korisnikTipovi" class="com.tim10.glavna_knjiga.mappings.KorisnikTipovi" fetch="select">
+            <column name="KorisnikTipovi_Id" not-null="true" />
+        </many-to-one>
+        <property name="ime" type="string">
+            <column name="Ime" length="20" />
+        </property>
+        <property name="prezime" type="string">
+            <column name="Prezime" length="20" />
+        </property>
+        <property name="korisnickoIme" type="string">
+            <column name="KorisnickoIme" length="12" />
+        </property>
+        <property name="lozinka" type="string">
+            <column name="Lozinka" length="10" />
+        </property>
+        <property name="adresa" type="string">
+            <column name="Adresa" length="45" />
+        </property>
+        <property name="jmbg" type="java.lang.Integer">
+            <column name="JMBG" />
+        </property>
+        <property name="telefon" type="java.lang.Integer">
+            <column name="Telefon" />
+        </property>
+        <property name="fax" type="java.lang.Integer">
+            <column name="Fax" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>
