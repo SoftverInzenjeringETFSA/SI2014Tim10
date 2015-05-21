@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
 import com.tim10.glavna_knjga.dbutils.LoginPanelUtils;
+import com.tim10.glavna_knjiga.session.UserData;
 
 import java.awt.Canvas;
 import java.awt.event.MouseAdapter;
@@ -156,6 +157,10 @@ public class LoginFrame extends JFrame {
 		pnLogin.add(cmbPreduzece);
 		
 		JButton btnUlogujSe = new JButton("Uloguj se!");
+		btnUlogujSe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnUlogujSe.addMouseListener(new MouseAdapter() {		
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -186,16 +191,26 @@ public class LoginFrame extends JFrame {
 	}
 	
 	private void checkLoginAndGo() {
+		String korisnickoIme = textKorisnickoIme.getText();
+		String lozinka = textLozinka.getText();
+		String preduzece = cmbTipKorisnika.getSelectedItem().toString();
 		LoginPanelUtils utils = LoginPanelUtils.getInstace();
 		Boolean isLoginValid = utils.isValidUsernamePasswordCombination(
-				textKorisnickoIme.getText(),
-				textLozinka.getText(),
-				cmbTipKorisnika.getSelectedItem().toString()
+				korisnickoIme,
+				lozinka,
+				preduzece
 		);
 		
 		if(isLoginValid) {
-			// TODO: add session logic
-			
+			UserData userData = UserData.getInstace();
+			userData.setKorisnik(utils.getKorisnikByUsername(korisnickoIme));
+			if(cmbTipKorisnika.getSelectedItem().toString().equals("Racunovodja")){
+				userData.setPreduzece(utils.getPreduzeceByName(preduzece));
+			}
+			else
+			{
+				userData.setPreduzece(null);
+			}
 			HomeFrameRacunovodja homeFrame = new HomeFrameRacunovodja();
 			homeFrame.setVisible(true);
 			

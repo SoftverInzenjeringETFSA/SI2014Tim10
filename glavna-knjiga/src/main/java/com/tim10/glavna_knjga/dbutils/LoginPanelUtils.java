@@ -57,4 +57,14 @@ public class LoginPanelUtils {
 		
 		return allPreduzeca;
 	}
+
+	public Korisnik getKorisnikByUsername(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Preduzece getPreduzeceByName(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

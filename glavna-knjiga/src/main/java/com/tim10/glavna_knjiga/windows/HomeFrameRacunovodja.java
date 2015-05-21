@@ -10,8 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class HomeFrameRacunovodja extends JFrame {
 
@@ -51,6 +56,7 @@ public class HomeFrameRacunovodja extends JFrame {
 	 * Create the frame.
 	 */
 	public HomeFrameRacunovodja() {
+		setTitle("Glavni meni");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -74,12 +80,24 @@ public class HomeFrameRacunovodja extends JFrame {
 		menuBar.add(mnKonto);
 		
 		mntmKontniPlan = new JMenuItem("Kontni plan");
+		mntmKontniPlan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KontniPlanFrame kontniPlanFrame = new KontniPlanFrame();
+				kontniPlanFrame.setVisible(true);
+			}
+		});
 		mntmKontniPlan.setForeground(Color.WHITE);
 		mntmKontniPlan.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		mntmKontniPlan.setBackground(new Color(30, 144, 255));
 		mnKonto.add(mntmKontniPlan);
 		
 		mntmKontniOkvir = new JMenuItem("Kontni okvir");
+		mntmKontniOkvir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KontniOkvirFrameView kontniOkvirFrame = new KontniOkvirFrameView();
+				kontniOkvirFrame.setVisible(true);
+			}
+		});
 		mntmKontniOkvir.setForeground(Color.WHITE);
 		mntmKontniOkvir.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		mntmKontniOkvir.setBackground(new Color(30, 144, 255));
