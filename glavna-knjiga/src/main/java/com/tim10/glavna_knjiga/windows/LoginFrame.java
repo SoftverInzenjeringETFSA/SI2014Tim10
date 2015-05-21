@@ -24,7 +24,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
-import com.tim10.glavna_knjga.dbutils.LoginPanelUtils;
+import com.tim10.glavna_knjiga.dbutils.LoginPanelUtils;
 import com.tim10.glavna_knjiga.session.UserData;
 
 import java.awt.Canvas;

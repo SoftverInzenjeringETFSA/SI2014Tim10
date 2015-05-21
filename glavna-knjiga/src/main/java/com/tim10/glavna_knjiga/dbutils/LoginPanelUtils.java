@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tim10.glavna_knjga.dbutils;
+package com.tim10.glavna_knjiga.dbutils;
 
 import java.util.HashSet;
 import java.util.List;

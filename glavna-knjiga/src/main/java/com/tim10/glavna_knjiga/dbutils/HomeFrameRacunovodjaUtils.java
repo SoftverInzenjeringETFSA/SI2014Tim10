@@ -1,4 +1,4 @@
-package com.tim10.glavna_knjga.dbutils;
+package com.tim10.glavna_knjiga.dbutils;
 
 import org.hibernate.Session;
 
