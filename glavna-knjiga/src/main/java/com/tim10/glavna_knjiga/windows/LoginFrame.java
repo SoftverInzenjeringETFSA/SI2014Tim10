@@ -42,7 +42,10 @@ public class LoginFrame extends JFrame {
 	private JLabel lblPreduzece;
 	private JComboBox cmbPreduzece;
 	private JLabel lblNetacniLoginPodaci;
+	private JComboBox cmbTipKorisnika;
 
+	private LoginPanelUtils utils = LoginPanelUtils.getInstace();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +65,7 @@ public class LoginFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginFrame() {
+	public LoginFrame() {		
 		setTitle("Glavna knjiga");
 		setResizable(false);
 		getContentPane().setBackground(Color.WHITE);
@@ -81,7 +84,7 @@ public class LoginFrame extends JFrame {
 		lblTipKorisnika.setBounds(114, 70, 100, 15);
 		pnLogin.add(lblTipKorisnika);
 		
-		JComboBox cmbTipKorisnika = new JComboBox();
+		cmbTipKorisnika = new JComboBox();
 		cmbTipKorisnika.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if( ((JComboBox)(e.getSource())).getSelectedItem().toString().equals("Racunovodja") ) {
@@ -98,7 +101,6 @@ public class LoginFrame extends JFrame {
 				
 			}
 		});
-		LoginPanelUtils utils = LoginPanelUtils.getInstace();
 		cmbTipKorisnika.setModel(new DefaultComboBoxModel(utils.getAllKorisnikTipoviNazivi().toArray()));
 		cmbTipKorisnika.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbTipKorisnika.setBackground(Color.WHITE);
@@ -127,7 +129,7 @@ public class LoginFrame extends JFrame {
 		lblLozinka.setBounds(124, 255, 90, 15);
 		pnLogin.add(lblLozinka);
 		
-		textLozinka = new JPasswordField();
+		this.textLozinka = new JPasswordField();
 		textLozinka.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -145,6 +147,7 @@ public class LoginFrame extends JFrame {
 		pnLogin.add(lblPreduzece);
 		
 		cmbPreduzece = new JComboBox();
+		cmbPreduzece.setModel(new DefaultComboBoxModel(utils.getAllPreduzeca().toArray()));
 		cmbPreduzece.setForeground(Color.LIGHT_GRAY);
 		cmbPreduzece.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbPreduzece.setBackground(Color.WHITE);
@@ -180,15 +183,14 @@ public class LoginFrame extends JFrame {
 		lblFamehof.setFont(new Font("Purisa", Font.BOLD, 70));
 		lblFamehof.setForeground(new Color(30, 144, 255));
 		pnlLogo.add(lblFamehof);
-		
-		Image cnvLogoImage = Toolkit.getDefaultToolkit().getImage("images/famehof-logo.png");
 	}
 	
 	private void checkLoginAndGo() {
 		LoginPanelUtils utils = LoginPanelUtils.getInstace();
 		Boolean isLoginValid = utils.isValidUsernamePasswordCombination(
 				textKorisnickoIme.getText(),
-				textLozinka.getText()
+				textLozinka.getText(),
+				cmbTipKorisnika.getSelectedItem().toString()
 		);
 		
 		if(isLoginValid) {

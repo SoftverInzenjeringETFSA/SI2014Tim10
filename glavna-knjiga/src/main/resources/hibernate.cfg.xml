@@ -10,6 +10,7 @@
   <property name="show_sql">true</property>
   <property name="hibernate.connection.password">2014SIEtf</property>
   <mapping resource="com/tim10/glavna_knjiga/mappings/Korisnik.hbm.xml"/>
+  <mapping resource="com/tim10/glavna_knjiga/mappings/Preduzece.hbm.xml"/>
   <mapping resource="com/tim10/glavna_knjiga/mappings/KorisnikTipovi.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

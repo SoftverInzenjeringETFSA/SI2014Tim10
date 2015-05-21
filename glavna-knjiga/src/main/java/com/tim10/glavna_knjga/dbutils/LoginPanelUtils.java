@@ -3,7 +3,9 @@
  */
 package com.tim10.glavna_knjga.dbutils;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.*;
 
@@ -33,19 +35,26 @@ public class LoginPanelUtils {
 	
 	public List<String> getAllKorisnikTipoviNazivi() {
 		Query query = session.createQuery("select kt.naziv from KorisnikTipovi kt");	
-		List<String> listAllKorisnikTipovi = query.list();
+		List<String> allKorisnikTipovi = query.list();
 		
-		return listAllKorisnikTipovi;
+		return allKorisnikTipovi;
 	}
 	
-	public Boolean isValidUsernamePasswordCombination(String username, String password) {
-		Query query = session.createQuery("select k.lozinka from Korisnik k where k.korisnickoIme='" + username + "'");	
-		List<String> real_password_list = query.list();
+	public Boolean isValidUsernamePasswordCombination(String username, String password, String userType) {
+		Query query = session.createQuery("select k from Korisnik k where k.korisnickoIme='" + username + "'");	
+		List<Korisnik> matchingUsers = query.list();
 		
-		if(real_password_list.size() == 0) {
+		if(matchingUsers.size() == 0) {
 			return false;
 		}
 		
-		return password.equals(real_password_list.get(0));
+		return password.equals((matchingUsers.get(0)).getLozinka()) && userType.equals(matchingUsers.get(0).getKorisnikTipovi().getNaziv());
+	}
+	
+	public List<String> getAllPreduzeca() {
+		Query query = session.createQuery("select p.naziv from Preduzece p");
+		List<String> allPreduzeca = query.list();
+		
+		return allPreduzeca;
 	}
 }

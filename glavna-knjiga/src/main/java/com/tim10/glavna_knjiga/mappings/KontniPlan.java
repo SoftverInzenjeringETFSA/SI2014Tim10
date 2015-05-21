@@ -1,6 +1,6 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 20, 2015 4:46:25 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 21, 2015 12:08:38 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
