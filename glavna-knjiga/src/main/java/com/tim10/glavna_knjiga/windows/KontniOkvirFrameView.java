@@ -25,7 +25,6 @@ public class KontniOkvirFrameView extends JFrame {
 	private JPanel panel;
 	private JTable tblKontniOkvir;
 	private ImageIcon save = new ImageIcon("images/save.png");
-	private JButton btnSaveKontniOkvir;
 	/**
 	 * Launch the application.
 	 */
@@ -67,11 +66,5 @@ public class KontniOkvirFrameView extends JFrame {
 		tblKontniOkvir.setBorder(new LineBorder(new Color(30, 144, 255), 1, true));
 		tblKontniOkvir.setBounds(10, 46, 744, 374);
 		panel.add(tblKontniOkvir);
-		
-		btnSaveKontniOkvir = new JButton(save);
-		btnSaveKontniOkvir.setBackground(new Color(30, 144, 255));
-		btnSaveKontniOkvir.setBounds(688, 465, 40, 40);
-		panel.add(btnSaveKontniOkvir);
-		btnSaveKontniOkvir.setToolTipText("Spasi promjene");
 	}
 }

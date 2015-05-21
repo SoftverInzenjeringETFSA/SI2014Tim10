@@ -46,7 +46,7 @@ public class LoginFrame extends JFrame {
 	private JComboBox cmbTipKorisnika;
 
 	private LoginPanelUtils utils = LoginPanelUtils.getInstace();
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -66,29 +66,32 @@ public class LoginFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginFrame() {		
+	public LoginFrame() {
 		setTitle("Glavna knjiga");
 		setResizable(false);
 		getContentPane().setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		getContentPane().setLayout(null);
-		
+
 		JPanel pnLogin = new JPanel();
 		pnLogin.setBackground(Color.WHITE);
-		pnLogin.setBorder(new TitledBorder(null, "Prijava", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(30, 144, 255)));
+		pnLogin.setBorder(new TitledBorder(null, "Prijava",
+				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(30, 144,
+						255)));
 		pnLogin.setBounds(22, 22, 744, 400);
 		getContentPane().add(pnLogin);
 		pnLogin.setLayout(null);
-		
+
 		JLabel lblTipKorisnika = new JLabel("Tip korisnika:");
-		lblTipKorisnika.setBounds(114, 70, 100, 15);
+		lblTipKorisnika.setBounds(129, 185, 100, 15);
 		pnLogin.add(lblTipKorisnika);
-		
+
 		cmbTipKorisnika = new JComboBox();
 		cmbTipKorisnika.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if( ((JComboBox)(e.getSource())).getSelectedItem().toString().equals("Racunovodja") ) {
+				if (((JComboBox) (e.getSource())).getSelectedItem().toString()
+						.equals("Racunovodja")) {
 					lblPreduzece.setVisible(true);
 					cmbPreduzece.setVisible(true);
 				} else {
@@ -99,69 +102,71 @@ public class LoginFrame extends JFrame {
 		});
 		cmbTipKorisnika.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				
+
 			}
 		});
-		cmbTipKorisnika.setModel(new DefaultComboBoxModel(utils.getAllKorisnikTipoviNazivi().toArray()));
+		cmbTipKorisnika.setModel(new DefaultComboBoxModel(utils
+				.getAllKorisnikTipoviNazivi().toArray()));
 		cmbTipKorisnika.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbTipKorisnika.setBackground(Color.WHITE);
 		cmbTipKorisnika.setForeground(Color.LIGHT_GRAY);
-		cmbTipKorisnika.setBounds(250, 65, 300, 24);
+		cmbTipKorisnika.setBounds(253, 180, 300, 24);
 		pnLogin.add(cmbTipKorisnika);
-		
+
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
-		lblKorisnikoIme.setBounds(94, 186, 120, 15);
+		lblKorisnikoIme.setBounds(117, 73, 120, 15);
 		pnLogin.add(lblKorisnikoIme);
-		
+
 		textKorisnickoIme = new JTextField();
 		textKorisnickoIme.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					checkLoginAndGo();
 				}
 			}
 		});
-		textKorisnickoIme.setBounds(250, 184, 300, 25);
+		textKorisnickoIme.setBounds(253, 68, 300, 25);
 		pnLogin.add(textKorisnickoIme);
 		textKorisnickoIme.setColumns(10);
-		
+
 		JLabel lblLozinka = new JLabel("Lozinka:");
-		lblLozinka.setBounds(124, 255, 90, 15);
+		lblLozinka.setBounds(163, 128, 90, 15);
 		pnLogin.add(lblLozinka);
-		
+
 		this.textLozinka = new JPasswordField();
 		textLozinka.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					checkLoginAndGo();
 				}
 			}
 		});
-		textLozinka.setBounds(250, 253, 300, 25);
+		textLozinka.setBounds(253, 123, 300, 25);
 		pnLogin.add(textLozinka);
-		
+
 		lblPreduzece = new JLabel("Preduzeće:");
-		lblPreduzece.setBounds(114, 128, 100, 15);
+		lblPreduzece.setBounds(142, 243, 100, 15);
 		lblPreduzece.setVisible(false);
 		pnLogin.add(lblPreduzece);
-		
+
 		cmbPreduzece = new JComboBox();
-		cmbPreduzece.setModel(new DefaultComboBoxModel(utils.getAllPreduzeca().toArray()));
+		cmbPreduzece.setModel(new DefaultComboBoxModel(utils.getAllPreduzeca()
+				.toArray()));
 		cmbPreduzece.setForeground(Color.LIGHT_GRAY);
 		cmbPreduzece.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbPreduzece.setBackground(Color.WHITE);
-		cmbPreduzece.setBounds(250, 123, 300, 24);
+		cmbPreduzece.setBounds(253, 238, 300, 24);
 		cmbPreduzece.setVisible(false);
 		pnLogin.add(cmbPreduzece);
-		
+
 		JButton btnUlogujSe = new JButton("Uloguj se!");
 		btnUlogujSe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnUlogujSe.addMouseListener(new MouseAdapter() {		
+		btnUlogujSe.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				checkLoginAndGo();
@@ -171,52 +176,63 @@ public class LoginFrame extends JFrame {
 		btnUlogujSe.setBackground(new Color(30, 144, 255));
 		btnUlogujSe.setBounds(433, 324, 117, 25);
 		pnLogin.add(btnUlogujSe);
-		
+
 		lblNetacniLoginPodaci = new JLabel("Netacni login podaci");
-		lblNetacniLoginPodaci.setForeground(new Color(255, 0, 255));
+		lblNetacniLoginPodaci.setForeground(new Color(255, 0, 0));
 		lblNetacniLoginPodaci.setBounds(395, 297, 155, 15);
 		lblNetacniLoginPodaci.setVisible(false);
 		pnLogin.add(lblNetacniLoginPodaci);
-		
+
 		JPanel pnlLogo = new JPanel();
-		pnlLogo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlLogo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
+				TitledBorder.TOP, null, null));
 		pnlLogo.setBackground(Color.WHITE);
 		pnlLogo.setBounds(22, 434, 744, 100);
 		getContentPane().add(pnlLogo);
-		
+		pnlLogo.setLayout(null);
+
 		JLabel lblFamehof = new JLabel("FAMEHOF");
-		lblFamehof.setFont(new Font("Purisa", Font.BOLD, 70));
+		lblFamehof.setBounds(224, -12, 600, 124);
+		lblFamehof.setFont(new Font("Purisa", Font.BOLD, 75));
 		lblFamehof.setForeground(new Color(30, 144, 255));
 		pnlLogo.add(lblFamehof);
+		
+		ImageIcon logoIcon = new ImageIcon("images/famehof-logo-thumb.png");
+		JButton btnNewButton = new JButton(logoIcon);
+		btnNewButton.setEnabled(false);
+		btnNewButton.setBounds(12, 12, 150, 75);
+		pnlLogo.add(btnNewButton);
 	}
-	
+
 	private void checkLoginAndGo() {
 		String korisnickoIme = textKorisnickoIme.getText();
 		String lozinka = textLozinka.getText();
-		String preduzece = cmbTipKorisnika.getSelectedItem().toString();
+		String tipKorisnika = cmbTipKorisnika.getSelectedItem().toString();
 		LoginPanelUtils utils = LoginPanelUtils.getInstace();
 		Boolean isLoginValid = utils.isValidUsernamePasswordCombination(
-				korisnickoIme,
-				lozinka,
-				preduzece
-		);
-		
-		if(isLoginValid) {
+				korisnickoIme, lozinka, tipKorisnika);
+
+		if (isLoginValid) {
 			UserData userData = UserData.getInstace();
 			userData.setKorisnik(utils.getKorisnikByUsername(korisnickoIme));
-			if(cmbTipKorisnika.getSelectedItem().toString().equals("Racunovodja")){
+			if (cmbTipKorisnika.getSelectedItem().toString().equals("Racunovodja")) {
+				String preduzece = cmbPreduzece.getSelectedItem().toString();
 				userData.setPreduzece(utils.getPreduzeceByName(preduzece));
-			}
-			else
-			{
+			} else {
 				userData.setPreduzece(null);
 			}
-			HomeFrameRacunovodja homeFrame = new HomeFrameRacunovodja();
-			homeFrame.setVisible(true);
+			
+			if(tipKorisnika.equals("Racunovodja")) {
+				System.out.println("entered...");
+				HomeFrameRacunovodja homeFrame = new HomeFrameRacunovodja();
+				homeFrame.setVisible(true);
+			} else if(tipKorisnika.equals("Administrator")) {
+				// TODO: Admin Panel
+			}
 			
 			dispose();
 		} else {
 			lblNetacniLoginPodaci.setVisible(true);
-		}		
+		}
 	}
 }

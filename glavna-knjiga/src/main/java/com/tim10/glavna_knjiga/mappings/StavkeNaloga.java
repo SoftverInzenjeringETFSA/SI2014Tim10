@@ -1,6 +1,6 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 12:08:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;

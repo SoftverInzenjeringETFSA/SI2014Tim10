@@ -18,6 +18,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JLabel;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
+
+import com.tim10.glavna_knjiga.dbutils.HomeFrameRacunovodjaUtils;
+import com.tim10.glavna_knjiga.session.UserData;
+
 public class HomeFrameRacunovodja extends JFrame {
 
 	/*---DEKLARACIJA*/
@@ -35,6 +42,11 @@ public class HomeFrameRacunovodja extends JFrame {
 	private JMenuItem mnGenerisiIzvjestaj;
 	private JMenu mnOdjava;
 	private JMenuItem mntmOdjavaIzSistema;
+	private JLabel lblKorisnickoImeValue;
+	private JLabel lblPreduzeceValue;
+	
+	private HomeFrameRacunovodjaUtils utils = HomeFrameRacunovodjaUtils.getInstace();
+	private UserData userData = UserData.getInstace();
 	/*---DEKLARACIJA*/
 	/**
 	 * Launch the application.
@@ -156,5 +168,53 @@ public class HomeFrameRacunovodja extends JFrame {
 		mntmOdjavaIzSistema.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		mntmOdjavaIzSistema.setBackground(new Color(30, 144, 255));
 		mnOdjava.add(mntmOdjavaIzSistema);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Podaci", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(30, 144, 255)));
+		panel.setBounds(100, 105, 600, 400);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblIme = new JLabel("Ime:");
+		lblIme.setBounds(74, 63, 70, 15);
+		panel.add(lblIme);
+		
+		JLabel lblPrezime = new JLabel("Prezime:");
+		lblPrezime.setBounds(74, 109, 70, 15);
+		panel.add(lblPrezime);
+		
+		JLabel lblKorisnickoIme = new JLabel("Korisnicko ime:");
+		lblKorisnickoIme.setBounds(74, 156, 120, 15);
+		panel.add(lblKorisnickoIme);
+		
+		JLabel lblPreduzece = new JLabel("Preduzece:");
+		lblPreduzece.setBounds(74, 200, 100, 15);
+		panel.add(lblPreduzece);
+		
+		JLabel lblImeValue = new JLabel("ime");
+		System.out.println();
+		lblImeValue.setText(userData.getKorisnik().getIme());
+		lblImeValue.setForeground(new Color(255, 140, 0));
+		lblImeValue.setBounds(221, 63, 150, 15);
+		panel.add(lblImeValue);
+		
+		JLabel lblPrezimeValue = new JLabel("prezime");
+		lblPrezimeValue.setText(userData.getKorisnik().getPrezime());
+		lblPrezimeValue.setForeground(new Color(255, 140, 0));
+		lblPrezimeValue.setBounds(221, 106, 150, 15);
+		panel.add(lblPrezimeValue);
+		
+		lblKorisnickoImeValue = new JLabel("korisnicko ime");
+		lblKorisnickoImeValue.setText(userData.getKorisnik().getKorisnickoIme());
+		lblKorisnickoImeValue.setForeground(new Color(255, 140, 0));
+		lblKorisnickoImeValue.setBounds(221, 154, 150, 15);
+		panel.add(lblKorisnickoImeValue);
+		
+		lblPreduzeceValue = new JLabel("preduzece");
+		lblPreduzeceValue.setText(userData.getPreduzece().getNaziv());
+		lblPreduzeceValue.setForeground(new Color(255, 140, 0));
+		lblPreduzeceValue.setBounds(221, 196, 150, 15);
+		panel.add(lblPreduzeceValue);
 	}
 }

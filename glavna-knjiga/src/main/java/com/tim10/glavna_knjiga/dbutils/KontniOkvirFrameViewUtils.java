@@ -4,18 +4,18 @@ import org.hibernate.Session;
 
 import com.tim10.glavna_knjiga.hibernate.HibernateSessionManager;
 
-public class HomeFrameRacunovodjaUtils {
-	private static HomeFrameRacunovodjaUtils instance = null;
+public class KontniOkvirFrameViewUtils {
+	private static KontniOkvirFrameViewUtils instance = null;
 	
 	private static Session session = HibernateSessionManager.getSessionFactory().openSession();
 	
-	private HomeFrameRacunovodjaUtils() {
+	private KontniOkvirFrameViewUtils() {
 		// NO INSTANTIATIOOON!!!
 	}
 	
-	public static HomeFrameRacunovodjaUtils getInstace() {
+	public static KontniOkvirFrameViewUtils getInstace() {
 		if(instance == null) {
-			instance = new HomeFrameRacunovodjaUtils();
+			instance = new KontniOkvirFrameViewUtils();
 		}
 		
 		return instance;

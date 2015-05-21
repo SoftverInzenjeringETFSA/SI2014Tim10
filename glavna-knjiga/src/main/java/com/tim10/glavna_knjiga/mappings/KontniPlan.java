@@ -1,11 +1,14 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 12:08:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +21,7 @@ import javax.persistence.TemporalType;
 public class KontniPlan implements java.io.Serializable {
 
 	private int idKontniPlan;
+	private Preduzece preduzece;
 	private String naziv;
 	private Date datumKreiranja;
 	private Integer poslovnaGodina;
@@ -25,13 +29,15 @@ public class KontniPlan implements java.io.Serializable {
 	public KontniPlan() {
 	}
 
-	public KontniPlan(int idKontniPlan) {
+	public KontniPlan(int idKontniPlan, Preduzece preduzece) {
 		this.idKontniPlan = idKontniPlan;
+		this.preduzece = preduzece;
 	}
 
-	public KontniPlan(int idKontniPlan, String naziv, Date datumKreiranja,
-			Integer poslovnaGodina) {
+	public KontniPlan(int idKontniPlan, Preduzece preduzece, String naziv,
+			Date datumKreiranja, Integer poslovnaGodina) {
 		this.idKontniPlan = idKontniPlan;
+		this.preduzece = preduzece;
 		this.naziv = naziv;
 		this.datumKreiranja = datumKreiranja;
 		this.poslovnaGodina = poslovnaGodina;
@@ -45,6 +51,16 @@ public class KontniPlan implements java.io.Serializable {
 
 	public void setIdKontniPlan(int idKontniPlan) {
 		this.idKontniPlan = idKontniPlan;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Preduzece_IdPreduzece", nullable = false)
+	public Preduzece getPreduzece() {
+		return this.preduzece;
+	}
+
+	public void setPreduzece(Preduzece preduzece) {
+		this.preduzece = preduzece;
 	}
 
 	@Column(name = "Naziv", length = 45)

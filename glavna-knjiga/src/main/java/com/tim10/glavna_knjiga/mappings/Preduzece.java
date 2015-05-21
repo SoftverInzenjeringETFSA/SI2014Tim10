@@ -1,10 +1,14 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 12:08:38 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +24,7 @@ public class Preduzece implements java.io.Serializable {
 	private String adresa;
 	private String telefon;
 	private String fax;
+	private Set<KontniPlan> kontniPlans = new HashSet<KontniPlan>(0);
 
 	public Preduzece() {
 	}
@@ -29,13 +34,14 @@ public class Preduzece implements java.io.Serializable {
 	}
 
 	public Preduzece(int idPreduzece, String naziv, String opis, String adresa,
-			String telefon, String fax) {
+			String telefon, String fax, Set<KontniPlan> kontniPlans) {
 		this.idPreduzece = idPreduzece;
 		this.naziv = naziv;
 		this.opis = opis;
 		this.adresa = adresa;
 		this.telefon = telefon;
 		this.fax = fax;
+		this.kontniPlans = kontniPlans;
 	}
 
 	@Id
@@ -91,6 +97,15 @@ public class Preduzece implements java.io.Serializable {
 
 	public void setFax(String fax) {
 		this.fax = fax;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "preduzece")
+	public Set<KontniPlan> getKontniPlans() {
+		return this.kontniPlans;
+	}
+
+	public void setKontniPlans(Set<KontniPlan> kontniPlans) {
+		this.kontniPlans = kontniPlans;
 	}
 
 }

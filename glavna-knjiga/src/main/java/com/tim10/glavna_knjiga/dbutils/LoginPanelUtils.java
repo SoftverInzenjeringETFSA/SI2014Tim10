@@ -58,13 +58,21 @@ public class LoginPanelUtils {
 		return allPreduzeca;
 	}
 
-	public Korisnik getKorisnikByUsername(String text) {
-		// TODO Auto-generated method stub
-		return null;
+	public Korisnik getKorisnikByUsername(String username) {
+		Query query = session.createQuery("select k from Korisnik k where k.korisnickoIme='" + username + "'");
+		List<Korisnik> matchingKorisnikList = query.list();
+		
+		return matchingKorisnikList.get(0);
 	}
 
-	public Preduzece getPreduzeceByName(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public Preduzece getPreduzeceByName(String name) {
+		System.out.println("Preduzece name: " + name);
+		
+		Query query = session.createQuery("select p from Preduzece p where p.naziv='" + name + "'");
+		List<Preduzece> matchingPreduzeceList = query.list();
+		
+		System.out.println("query result size: " + matchingPreduzeceList.size());
+		
+		return matchingPreduzeceList.get(0);
 	}
 }
