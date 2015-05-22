@@ -93,6 +93,8 @@ public class KontniOkvirFrameView extends JFrame {
 		Object[][] rowData = utils.getAllKontniOkvir();
 		
 		table = new JTable(rowData, new Object[] { "Sifra konta", "Naziv konta" });
+		table.setFont(new Font("Dialog", Font.BOLD, 15));
+		table.setForeground(Color.DARK_GRAY);
 		table.setShowHorizontalLines(false);
 		scrollPane_1.setViewportView(table);
 		
@@ -137,6 +139,8 @@ public class KontniOkvirFrameView extends JFrame {
 		Object[][] rowData = utils.getAllKontniOkvirByParameters(formattedTextField.getText(), textField.getText());
 		
 		table = new JTable(rowData, new Object[] { "Sifra konta", "Naziv konta" });
+		table.setFont(new Font("Dialog", Font.BOLD, 15));
+		table.setForeground(Color.DARK_GRAY);
 		table.setShowHorizontalLines(false);
 		scrollPane_1.setViewportView(table);
 	}

@@ -1,12 +1,18 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +25,7 @@ public class KontniOkvir implements java.io.Serializable {
 	private Integer id;
 	private String brojKonta;
 	private String naziv;
+	private Set<KontniPlan> kontniPlans = new HashSet<KontniPlan>(0);
 
 	public KontniOkvir() {
 	}
@@ -26,6 +33,13 @@ public class KontniOkvir implements java.io.Serializable {
 	public KontniOkvir(String brojKonta, String naziv) {
 		this.brojKonta = brojKonta;
 		this.naziv = naziv;
+	}
+
+	public KontniOkvir(String brojKonta, String naziv,
+			Set<KontniPlan> kontniPlans) {
+		this.brojKonta = brojKonta;
+		this.naziv = naziv;
+		this.kontniPlans = kontniPlans;
 	}
 
 	@Id
@@ -55,6 +69,16 @@ public class KontniOkvir implements java.io.Serializable {
 
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "KontniPlan_has_KontniOkvir", catalog = "Tim10", joinColumns = { @JoinColumn(name = "KontniOkvir_Id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "KontniPlan_IdKontniPlan", nullable = false, updatable = false) })
+	public Set<KontniPlan> getKontniPlans() {
+		return this.kontniPlans;
+	}
+
+	public void setKontniPlans(Set<KontniPlan> kontniPlans) {
+		this.kontniPlans = kontniPlans;
 	}
 
 }

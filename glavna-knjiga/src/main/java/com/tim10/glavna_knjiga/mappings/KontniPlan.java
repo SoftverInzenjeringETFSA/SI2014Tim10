@@ -1,13 +1,17 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,6 +29,7 @@ public class KontniPlan implements java.io.Serializable {
 	private String naziv;
 	private Date datumKreiranja;
 	private Integer poslovnaGodina;
+	private Set<KontniOkvir> kontniOkvirs = new HashSet<KontniOkvir>(0);
 
 	public KontniPlan() {
 	}
@@ -35,12 +40,14 @@ public class KontniPlan implements java.io.Serializable {
 	}
 
 	public KontniPlan(int idKontniPlan, Preduzece preduzece, String naziv,
-			Date datumKreiranja, Integer poslovnaGodina) {
+			Date datumKreiranja, Integer poslovnaGodina,
+			Set<KontniOkvir> kontniOkvirs) {
 		this.idKontniPlan = idKontniPlan;
 		this.preduzece = preduzece;
 		this.naziv = naziv;
 		this.datumKreiranja = datumKreiranja;
 		this.poslovnaGodina = poslovnaGodina;
+		this.kontniOkvirs = kontniOkvirs;
 	}
 
 	@Id
@@ -89,6 +96,16 @@ public class KontniPlan implements java.io.Serializable {
 
 	public void setPoslovnaGodina(Integer poslovnaGodina) {
 		this.poslovnaGodina = poslovnaGodina;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "KontniPlan_has_KontniOkvir", catalog = "Tim10", joinColumns = { @JoinColumn(name = "KontniPlan_IdKontniPlan", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "KontniOkvir_Id", nullable = false, updatable = false) })
+	public Set<KontniOkvir> getKontniOkvirs() {
+		return this.kontniOkvirs;
+	}
+
+	public void setKontniOkvirs(Set<KontniOkvir> kontniOkvirs) {
+		this.kontniOkvirs = kontniOkvirs;
 	}
 
 }

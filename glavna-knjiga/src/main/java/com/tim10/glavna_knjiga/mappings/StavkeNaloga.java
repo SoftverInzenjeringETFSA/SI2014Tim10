@@ -1,12 +1,16 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +23,8 @@ import javax.persistence.TemporalType;
 public class StavkeNaloga implements java.io.Serializable {
 
 	private int id;
+	private Nalozi nalozi;
+	private Dokumenti dokumenti;
 	private String naziv;
 	private Date datumKreiranja;
 	private BigDecimal duguje;
@@ -27,13 +33,18 @@ public class StavkeNaloga implements java.io.Serializable {
 	public StavkeNaloga() {
 	}
 
-	public StavkeNaloga(int id) {
+	public StavkeNaloga(int id, Nalozi nalozi, Dokumenti dokumenti) {
 		this.id = id;
+		this.nalozi = nalozi;
+		this.dokumenti = dokumenti;
 	}
 
-	public StavkeNaloga(int id, String naziv, Date datumKreiranja,
-			BigDecimal duguje, BigDecimal potrazuje) {
+	public StavkeNaloga(int id, Nalozi nalozi, Dokumenti dokumenti,
+			String naziv, Date datumKreiranja, BigDecimal duguje,
+			BigDecimal potrazuje) {
 		this.id = id;
+		this.nalozi = nalozi;
+		this.dokumenti = dokumenti;
 		this.naziv = naziv;
 		this.datumKreiranja = datumKreiranja;
 		this.duguje = duguje;
@@ -48,6 +59,28 @@ public class StavkeNaloga implements java.io.Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Nalozi_Id", nullable = false)
+	public Nalozi getNalozi() {
+		return this.nalozi;
+	}
+
+	public void setNalozi(Nalozi nalozi) {
+		this.nalozi = nalozi;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumns({
+			@JoinColumn(name = "Dokumenti_Id", referencedColumnName = "Id", nullable = false),
+			@JoinColumn(name = "Dokumenti_VrstaDokumenta_Id", referencedColumnName = "VrstaDokumenta_Id", nullable = false) })
+	public Dokumenti getDokumenti() {
+		return this.dokumenti;
+	}
+
+	public void setDokumenti(Dokumenti dokumenti) {
+		this.dokumenti = dokumenti;
 	}
 
 	@Column(name = "Naziv", length = 45)

@@ -1,10 +1,16 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,6 +27,7 @@ public class Klijent implements java.io.Serializable {
 	private String telefon;
 	private String fax;
 	private String tip;
+	private Set<Preduzece> preduzeces = new HashSet<Preduzece>(0);
 
 	public Klijent() {
 	}
@@ -30,7 +37,7 @@ public class Klijent implements java.io.Serializable {
 	}
 
 	public Klijent(int id, String naziv, String opis, String adresa,
-			String telefon, String fax, String tip) {
+			String telefon, String fax, String tip, Set<Preduzece> preduzeces) {
 		this.id = id;
 		this.naziv = naziv;
 		this.opis = opis;
@@ -38,6 +45,7 @@ public class Klijent implements java.io.Serializable {
 		this.telefon = telefon;
 		this.fax = fax;
 		this.tip = tip;
+		this.preduzeces = preduzeces;
 	}
 
 	@Id
@@ -102,6 +110,16 @@ public class Klijent implements java.io.Serializable {
 
 	public void setTip(String tip) {
 		this.tip = tip;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "Klijent_has_Preduzece", catalog = "Tim10", joinColumns = { @JoinColumn(name = "Klijent_Id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "Preduzece_IdPreduzece", nullable = false, updatable = false) })
+	public Set<Preduzece> getPreduzeces() {
+		return this.preduzeces;
+	}
+
+	public void setPreduzeces(Set<Preduzece> preduzeces) {
+		this.preduzeces = preduzeces;
 	}
 
 }

@@ -1,11 +1,17 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,22 +24,32 @@ import javax.persistence.TemporalType;
 public class Nalozi implements java.io.Serializable {
 
 	private int id;
+	private Korisnik korisnik;
+	private Preduzece preduzece;
 	private Date datumKnjizenja;
 	private Boolean status;
 	private String nalozicol;
+	private Set<StavkeNaloga> stavkeNalogas = new HashSet<StavkeNaloga>(0);
 
 	public Nalozi() {
 	}
 
-	public Nalozi(int id) {
+	public Nalozi(int id, Korisnik korisnik, Preduzece preduzece) {
 		this.id = id;
+		this.korisnik = korisnik;
+		this.preduzece = preduzece;
 	}
 
-	public Nalozi(int id, Date datumKnjizenja, Boolean status, String nalozicol) {
+	public Nalozi(int id, Korisnik korisnik, Preduzece preduzece,
+			Date datumKnjizenja, Boolean status, String nalozicol,
+			Set<StavkeNaloga> stavkeNalogas) {
 		this.id = id;
+		this.korisnik = korisnik;
+		this.preduzece = preduzece;
 		this.datumKnjizenja = datumKnjizenja;
 		this.status = status;
 		this.nalozicol = nalozicol;
+		this.stavkeNalogas = stavkeNalogas;
 	}
 
 	@Id
@@ -44,6 +60,26 @@ public class Nalozi implements java.io.Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Korisnik_Id", nullable = false)
+	public Korisnik getKorisnik() {
+		return this.korisnik;
+	}
+
+	public void setKorisnik(Korisnik korisnik) {
+		this.korisnik = korisnik;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Preduzece_IdPreduzece", nullable = false)
+	public Preduzece getPreduzece() {
+		return this.preduzece;
+	}
+
+	public void setPreduzece(Preduzece preduzece) {
+		this.preduzece = preduzece;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -72,6 +108,15 @@ public class Nalozi implements java.io.Serializable {
 
 	public void setNalozicol(String nalozicol) {
 		this.nalozicol = nalozicol;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "nalozi")
+	public Set<StavkeNaloga> getStavkeNalogas() {
+		return this.stavkeNalogas;
+	}
+
+	public void setStavkeNalogas(Set<StavkeNaloga> stavkeNalogas) {
+		this.stavkeNalogas = stavkeNalogas;
 	}
 
 }

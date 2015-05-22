@@ -1,13 +1,16 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -29,6 +32,7 @@ public class Korisnik implements java.io.Serializable {
 	private Integer telefon;
 	private Integer fax;
 	private String email;
+	private Set<Nalozi> nalozis = new HashSet<Nalozi>(0);
 
 	public Korisnik() {
 	}
@@ -41,7 +45,7 @@ public class Korisnik implements java.io.Serializable {
 	public Korisnik(int id, KorisnikTipovi korisnikTipovi, String ime,
 			String prezime, String korisnickoIme, String lozinka,
 			String adresa, Integer jmbg, Integer telefon, Integer fax,
-			String email) {
+			String email, Set<Nalozi> nalozis) {
 		this.id = id;
 		this.korisnikTipovi = korisnikTipovi;
 		this.ime = ime;
@@ -53,6 +57,7 @@ public class Korisnik implements java.io.Serializable {
 		this.telefon = telefon;
 		this.fax = fax;
 		this.email = email;
+		this.nalozis = nalozis;
 	}
 
 	@Id
@@ -154,6 +159,15 @@ public class Korisnik implements java.io.Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik")
+	public Set<Nalozi> getNalozis() {
+		return this.nalozis;
+	}
+
+	public void setNalozis(Set<Nalozi> nalozis) {
+		this.nalozis = nalozis;
 	}
 
 }

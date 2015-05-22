@@ -1,6 +1,6 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 21, 2015 7:20:17 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +27,9 @@ public class Preduzece implements java.io.Serializable {
 	private String adresa;
 	private String telefon;
 	private String fax;
+	private Set<Nalozi> nalozis = new HashSet<Nalozi>(0);
 	private Set<KontniPlan> kontniPlans = new HashSet<KontniPlan>(0);
+	private Set<Klijent> klijents = new HashSet<Klijent>(0);
 
 	public Preduzece() {
 	}
@@ -34,14 +39,17 @@ public class Preduzece implements java.io.Serializable {
 	}
 
 	public Preduzece(int idPreduzece, String naziv, String opis, String adresa,
-			String telefon, String fax, Set<KontniPlan> kontniPlans) {
+			String telefon, String fax, Set<Nalozi> nalozis,
+			Set<KontniPlan> kontniPlans, Set<Klijent> klijents) {
 		this.idPreduzece = idPreduzece;
 		this.naziv = naziv;
 		this.opis = opis;
 		this.adresa = adresa;
 		this.telefon = telefon;
 		this.fax = fax;
+		this.nalozis = nalozis;
 		this.kontniPlans = kontniPlans;
+		this.klijents = klijents;
 	}
 
 	@Id
@@ -100,12 +108,31 @@ public class Preduzece implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "preduzece")
+	public Set<Nalozi> getNalozis() {
+		return this.nalozis;
+	}
+
+	public void setNalozis(Set<Nalozi> nalozis) {
+		this.nalozis = nalozis;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "preduzece")
 	public Set<KontniPlan> getKontniPlans() {
 		return this.kontniPlans;
 	}
 
 	public void setKontniPlans(Set<KontniPlan> kontniPlans) {
 		this.kontniPlans = kontniPlans;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "Klijent_has_Preduzece", catalog = "Tim10", joinColumns = { @JoinColumn(name = "Preduzece_IdPreduzece", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "Klijent_Id", nullable = false, updatable = false) })
+	public Set<Klijent> getKlijents() {
+		return this.klijents;
+	}
+
+	public void setKlijents(Set<Klijent> klijents) {
+		this.klijents = klijents;
 	}
 
 }
