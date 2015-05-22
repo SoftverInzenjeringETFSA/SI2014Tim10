@@ -13,5 +13,6 @@
   <mapping resource="com/tim10/glavna_knjiga/mappings/KorisnikTipovi.hbm.xml"/>
   <mapping resource="com/tim10/glavna_knjiga/mappings/Preduzece.hbm.xml"/>
   <mapping resource="com/tim10/glavna_knjiga/mappings/KontniPlan.hbm.xml"/>
+  <mapping resource="com/tim10/glavna_knjiga/mappings/KontniOkvir.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

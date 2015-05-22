@@ -67,6 +67,14 @@ public class LoginFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginFrame() {
+		getContentPane().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					checkLoginAndGo();
+				}
+			}
+		});
 		setTitle("Glavna knjiga");
 		setResizable(false);
 		getContentPane().setBackground(Color.WHITE);
