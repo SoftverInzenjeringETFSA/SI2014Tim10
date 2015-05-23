@@ -6,6 +6,8 @@
 package com.tim10.glavna_knjiga.windows;
 
 import com.tim10.glavna_knjiga.dbutils.DodajKorisnikaFrameUtils;
+import com.tim10.glavna_knjiga.mappings.Korisnik;
+import com.tim10.glavna_knjiga.mappings.KorisnikTipovi;
 import java.awt.Color;
 import static javassist.CtMethod.ConstParameter.string;
 import javax.swing.DefaultComboBoxModel;
@@ -96,6 +98,11 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
 
         txtDodajIme.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajIme.setPreferredSize(new java.awt.Dimension(150, 25));
+        txtDodajIme.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDodajImeKeyTyped(evt);
+            }
+        });
 
         txtDodajJMBG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajJMBG.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -255,6 +262,15 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Neispravan format telefona", "naslov", JOptionPane.INFORMATION_MESSAGE);
         }
         
+        Korisnik k = new Korisnik();
+        KorisnikTipovi kt = new KorisnikTipovi();
+        kt.setId(1);
+        k.setIme("Mastodont");
+        k.setPrezime("MastodoncinMrtva");
+        k.setId(3);
+        k.setKorisnikTipovi(kt);
+        utils.istekaj(k);
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -266,6 +282,15 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtDodajTelefonKeyTyped
+
+    private void txtDodajImeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDodajImeKeyTyped
+        // TODO add your handling code here:
+        if(Character.isDigit((evt.getKeyChar())))
+        {
+          System.out.println("entered...");
+            evt.consume();  
+        }
+    }//GEN-LAST:event_txtDodajImeKeyTyped
 
     /**
      * @param args the command line arguments
