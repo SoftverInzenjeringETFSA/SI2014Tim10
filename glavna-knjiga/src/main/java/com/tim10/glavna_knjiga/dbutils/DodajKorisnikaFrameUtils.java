@@ -6,9 +6,11 @@
 package com.tim10.glavna_knjiga.dbutils;
 
 import com.tim10.glavna_knjiga.hibernate.HibernateSessionManager;
+import com.tim10.glavna_knjiga.mappings.Korisnik;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -39,4 +41,21 @@ public class DodajKorisnikaFrameUtils {
         
         return allKorisnikTipovi;
     }
+    
+    public void ustekaj (Korisnik k)
+    {
+        Transaction tx = session.beginTransaction();
+        session.save(k);
+        tx.commit();
+        //session.disconnect();
+        //session.close();
+    }
+    
+    public void istekaj (Korisnik k)
+    {
+        Transaction tx = session.beginTransaction();
+        session.delete(k);
+        tx.commit();
+    }
+    
 }
