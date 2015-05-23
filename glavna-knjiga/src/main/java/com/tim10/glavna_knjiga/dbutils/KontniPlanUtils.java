@@ -37,21 +37,46 @@ public class KontniPlanUtils {
     public Object[][] getKontoListByName(String naziv) {
         Query query = session.createQuery("select kp from KontniPlan kp where kp.preduzece.naziv='" + naziv + "'");
         List<KontniPlan> allKontniPlan = query.list();
+
+        if(allKontniPlan.size() == 0) {
+            return null;
+        }
         
-        System.out.println(allKontniPlan.size());
+        
+        
+        Set<KontniOkvir> kontniOkvirs = allKontniPlan.get(0).getKontniOkvirs();
+        Object[][] rowData = new Object[kontniOkvirs.size()][];
+        int i = 0;
+        for(KontniOkvir okvir : kontniOkvirs) {
+            System.out.println(okvir.getBrojKonta() + " " + okvir.getNaziv());
+            rowData[i] = 
+                    new Object[] { okvir.getBrojKonta(), okvir.getNaziv() };
+            ++i;
+        }
+        
+        return rowData;
+    }
+
+    public Object[][] getKontoListByParameters(String naziv, String sifraKonta, String nazivKonta) {
+        Query query = session.createQuery("select kp from KontniPlan kp where kp.preduzece.naziv='" + naziv + "'");
+        List<KontniPlan> allKontniPlan = query.list();
+        
+        System.out.println("naziv: " + nazivKonta);
         
         if(allKontniPlan.size() == 0) {
             return null;
         }
         
-        Object[][] rowData = new Object[allKontniPlan.size()][];
+        System.out.println("naziv: " + nazivKonta);
         
         Set<KontniOkvir> kontniOkvirs = allKontniPlan.get(0).getKontniOkvirs();
-        System.out.println("kontni okvir size: " + kontniOkvirs.size());
+        Object[][] rowData = new Object[kontniOkvirs.size()][];
         int i = 0;
         for(KontniOkvir okvir : kontniOkvirs) {
-            rowData[i] = 
-                    new Object[] { okvir.getBrojKonta().toString(), okvir.getNaziv() };
+            if(okvir.getBrojKonta().startsWith(sifraKonta) && okvir.getNaziv().toLowerCase().contains(nazivKonta)) {
+                rowData[i] = 
+                        new Object[] { okvir.getBrojKonta(), okvir.getNaziv() };
+            }
             ++i;
         }
         

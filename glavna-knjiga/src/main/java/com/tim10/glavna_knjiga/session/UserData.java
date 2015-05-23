@@ -14,9 +14,9 @@ public class UserData {
 	private static Session session = HibernateSessionManager.getSessionFactory().openSession();
 
 	private UserData() {
-		// NO INSTANTIATIOOON!!!
-	}
-
+            // NO INSTANTIATIOOON!!!
+        }
+        
 	public static UserData getInstace() {
 		if (instance == null) {
 			instance = new UserData();

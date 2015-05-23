@@ -7,6 +7,7 @@ package com.tim10.glavna_knjiga.windows;
 
 import com.tim10.glavna_knjiga.dbutils.KontniPlanUtils;
 import com.tim10.glavna_knjiga.session.UserData;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -68,12 +69,21 @@ public class KontniPlanFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Naziv konta:");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
         jLabel2.setText("Broj konta:");
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jFormattedTextField1KeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jFormattedTextField1KeyReleased(evt);
             }
         });
 
@@ -132,6 +142,14 @@ public class KontniPlanFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jFormattedTextField1KeyTyped
 
+    private void jFormattedTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyReleased
+        updateData();
+    }//GEN-LAST:event_jFormattedTextField1KeyReleased
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        updateData();
+    }//GEN-LAST:event_jTextField1KeyReleased
+    
     /**
      * @param args the command line arguments
      */
@@ -169,7 +187,13 @@ public class KontniPlanFrame extends javax.swing.JFrame {
     
     private void initializeData() {
         this.jTable1.setModel(new DefaultTableModel(
-                utils.getKontoListByName(userData.getPreduzece().getNaziv()), new Object[] { "Sifra konta", "Naziv konta" })
+                utils.getKontoListByName(userData.getPreduzece().getNaziv()), new Object[] { "Sifra konta", "Naziv konta" }) 
+        );
+    }
+    
+    private void updateData() {
+        this.jTable1.setModel(new DefaultTableModel(
+                utils.getKontoListByParameters(userData.getPreduzece().getNaziv(), this.jFormattedTextField1.getText(), this.jTextField1.getText()), new Object[] { "Sifra konta", "Naziv konta" }) 
         );
     }
 
