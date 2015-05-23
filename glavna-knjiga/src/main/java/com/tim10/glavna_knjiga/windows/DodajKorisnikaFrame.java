@@ -5,8 +5,10 @@
  */
 package com.tim10.glavna_knjiga.windows;
 
+import com.tim10.glavna_knjiga.dbutils.DodajKorisnikaFrameUtils;
 import java.awt.Color;
 import static javassist.CtMethod.ConstParameter.string;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -19,11 +21,14 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form DodajKorisnikaFrame
+     *
      */
+    private DodajKorisnikaFrameUtils utils = DodajKorisnikaFrameUtils.getInstace();
     private ImageIcon icon = new ImageIcon("images/save-kor.png");
     public DodajKorisnikaFrame() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
+        cmDodajTipKorisnika.setModel(new DefaultComboBoxModel(utils.getAllTipKorisnika().toArray()));
         
     }
 
@@ -54,9 +59,9 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtDodajAdresu = new javax.swing.JTextField();
-        txtDodajTelefon = new javax.swing.JFormattedTextField();
         txtDodajFax = new javax.swing.JFormattedTextField();
         txtDodajEmail = new javax.swing.JTextField();
+        txtDodajTelefon = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -120,14 +125,6 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         txtDodajAdresu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajAdresu.setPreferredSize(new java.awt.Dimension(150, 25));
 
-        txtDodajTelefon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        try {
-            txtDodajTelefon.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###/###-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtDodajTelefon.setPreferredSize(new java.awt.Dimension(150, 25));
-
         txtDodajFax.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         try {
             txtDodajFax.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###/###-###")));
@@ -138,6 +135,14 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
 
         txtDodajEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajEmail.setPreferredSize(new java.awt.Dimension(150, 25));
+
+        txtDodajTelefon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        txtDodajTelefon.setPreferredSize(new java.awt.Dimension(150, 25));
+        txtDodajTelefon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDodajTelefonKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,9 +174,9 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDodajEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDodajFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDodajAdresu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmDodajTipKorisnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmDodajTipKorisnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDodajTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -244,9 +249,23 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //String a = txtDodajIme.getText();
+        String a = txtDodajTelefon.getText();
+        if(a.length() != 9)
+        {
+            JOptionPane.showMessageDialog(null, "Neispravan format telefona", "naslov", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtDodajTelefonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDodajTelefonKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar())) 
+        {
+            System.out.println("entered...");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDodajTelefonKeyTyped
 
     /**
      * @param args the command line arguments
@@ -306,6 +325,6 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtDodajKorIme;
     private javax.swing.JPasswordField txtDodajLozinku;
     private javax.swing.JTextField txtDodajPrezime;
-    private javax.swing.JFormattedTextField txtDodajTelefon;
+    private javax.swing.JTextField txtDodajTelefon;
     // End of variables declaration//GEN-END:variables
 }
