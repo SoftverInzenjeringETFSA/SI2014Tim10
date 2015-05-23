@@ -5,12 +5,16 @@
  */
 package com.tim10.glavna_knjiga.windows;
 
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import com.tim10.glavna_knjiga.dbutils.HomeFrameAdminUtils;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -22,15 +26,21 @@ public class HomeFrameAdmin extends javax.swing.JFrame {
      * Creates new form HomeFrameAdmin
      */
     private HomeFrameAdminUtils utils = HomeFrameAdminUtils.getInstace();
+    
     public HomeFrameAdmin() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         Object[][] rowData = utils.getAllKorisnici();
-        tblKorisnici = new JTable(rowData, new Object[] { "Ime", "Prezime" });
-        tblKorisnici.setFont(new Font("Dialog", Font.BOLD, 15));
-        tblKorisnici.setForeground(Color.DARK_GRAY);
-        tblKorisnici.setShowHorizontalLines(false);
-        scrollPane_1.setViewportView(tblKorisnici);
+        
+        
+        //tblKorisnici = new JTable(utils.getDefModel());
+        tblKorisnici.setModel(utils.getDefModel());
+        
+        //tblKorisnici = new JTable(rowData, new Object[] { "Ime", "Prezime" });
+        //tblKorisnici.setFont(new Font("Dialog", Font.BOLD, 15));
+        //tblKorisnici.setForeground(Color.DARK_GRAY);
+        //tblKorisnici.setShowHorizontalLines(false);
+        //scrollPane_1.setViewportView(tblKorisnici);
         
     }
 
