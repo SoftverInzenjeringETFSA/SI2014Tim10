@@ -30,7 +30,7 @@ public class HomeFrameAdmin extends javax.swing.JFrame {
         tblKorisnici.setFont(new Font("Dialog", Font.BOLD, 15));
         tblKorisnici.setForeground(Color.DARK_GRAY);
         tblKorisnici.setShowHorizontalLines(false);
-       // scrollPane_1.setViewportView(tblKorisnici);
+        scrollPane_1.setViewportView(tblKorisnici);
         
     }
 
@@ -120,17 +120,6 @@ public class HomeFrameAdmin extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 153, 255), 1, true), "Korisnici", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(51, 153, 255))); // NOI18N
 
-        tblKorisnici.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(tblKorisnici);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
