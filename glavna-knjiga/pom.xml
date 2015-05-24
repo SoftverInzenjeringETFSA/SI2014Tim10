@@ -35,24 +35,4 @@
 	</dependency>
     
   </dependencies>
-  
-  <build>
-	  <plugins>
-	    <plugin>
-	      <!-- Build an executable JAR -->
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-jar-plugin</artifactId>
-	      <version>2.4</version>
-	      <configuration>
-	        <archive>
-	          <manifest>
-	            <addClasspath>true</addClasspath>
-	            <classpathPrefix>lib/</classpathPrefix>
-	            <mainClass>com.tim10.glavna_knjiga.windows.LoginFrame</mainClass>
-	          </manifest>
-	        </archive>
-	      </configuration>
-	    </plugin>
-	  </plugins>
-	</build>
 </project>
