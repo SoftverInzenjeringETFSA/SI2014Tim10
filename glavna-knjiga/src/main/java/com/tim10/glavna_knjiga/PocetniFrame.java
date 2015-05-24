@@ -13,6 +13,7 @@ import com.tim10.glavna_knjiga.mappings.KorisnikTipovi;
  *
  */
 public class PocetniFrame {
+        private PocetniFrame(){}
 	public static void main(String[] args) {
 		Session session = HibernateSessionManager.getSessionFactory()
 				.openSession();

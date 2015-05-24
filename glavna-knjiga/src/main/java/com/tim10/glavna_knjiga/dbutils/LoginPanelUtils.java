@@ -60,7 +60,7 @@ public class LoginPanelUtils {
 	}
 
 	public Korisnik getKorisnikByUsername(String username) {
-		Query query = session.createQuery("select k from Korisnik k where k.korisnickoIme=?'");
+		Query query = session.createQuery("select k from Korisnik k where k.korisnickoIme=?");
                 query = query.setParameter(0,username);
 		List<Korisnik> matchingKorisnikList = query.list();
 		
