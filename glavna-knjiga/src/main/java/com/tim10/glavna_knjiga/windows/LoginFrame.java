@@ -235,7 +235,8 @@ public class LoginFrame extends JFrame {
 				HomeFrameRacunovodja homeFrame = new HomeFrameRacunovodja();
 				homeFrame.setVisible(true);
 			} else if(tipKorisnika.equals("Administrator")) {
-				// TODO: Admin Panel
+				HomeFrameAdmin adminHomeFrame = new HomeFrameAdmin();
+                                adminHomeFrame.setVisible(true);
 			}
 			
 			dispose();

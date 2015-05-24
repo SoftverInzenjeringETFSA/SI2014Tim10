@@ -68,5 +68,8 @@ public class KontniPlanIzmjenaUtils {
     }
     
     public static void commitData(Object[][] tableData) {
+        for(Object[] row : tableData) {
+            
+        }
     }
 }
