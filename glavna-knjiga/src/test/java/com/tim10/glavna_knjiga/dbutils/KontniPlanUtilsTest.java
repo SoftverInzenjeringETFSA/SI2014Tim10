@@ -5,6 +5,9 @@
  */
 package com.tim10.glavna_knjiga.dbutils;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 
 /**
@@ -62,7 +65,16 @@ public class KontniPlanUtilsTest extends TestCase {
         String nazivKonta = "Moj kontni planic";
         KontniPlanUtils instance = KontniPlanUtils.getInstace();
         Object[][] expResult = null;
-        Object[][] result = instance.getKontoListByParameters(naziv, sifraKonta, nazivKonta);
+        Object[][] result = null;
+        try {
+            try {
+                result = instance.getKontoListByParameters(naziv, sifraKonta, nazivKonta);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(KontniPlanUtilsTest.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KontniPlanUtilsTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(2, result.length);
         // TODO review the generated test code and remove the default call to fail.
         

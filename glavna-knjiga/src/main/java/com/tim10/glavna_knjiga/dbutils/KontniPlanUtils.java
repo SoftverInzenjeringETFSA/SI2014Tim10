@@ -8,6 +8,9 @@ package com.tim10.glavna_knjiga.dbutils;
 import com.tim10.glavna_knjiga.hibernate.HibernateSessionManager;
 import com.tim10.glavna_knjiga.mappings.KontniOkvir;
 import com.tim10.glavna_knjiga.mappings.KontniPlan;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.Query;
@@ -42,8 +45,6 @@ public class KontniPlanUtils {
             return null;
         }
         
-        
-        
         Set<KontniOkvir> kontniOkvirs = allKontniPlan.get(0).getKontniOkvirs();
         Object[][] rowData = new Object[kontniOkvirs.size()][];
         int i = 0;
@@ -57,7 +58,9 @@ public class KontniPlanUtils {
         return rowData;
     }
 
-    public Object[][] getKontoListByParameters(String naziv, String sifraKonta, String nazivKonta) {
+    public Object[][] getKontoListByParameters(String naziv, String sifraKonta, String nazivKonta) throws ClassNotFoundException, SQLException {
+        session = HibernateSessionManager.getSessionFactory().openSession();
+        
         Query query = session.createQuery("select kp from KontniPlan kp where kp.preduzece.naziv='" + naziv + "'");
         List<KontniPlan> allKontniPlan = query.list();
         
@@ -76,8 +79,8 @@ public class KontniPlanUtils {
             if(okvir.getBrojKonta().startsWith(sifraKonta) && okvir.getNaziv().toLowerCase().contains(nazivKonta)) {
                 rowData[i] = 
                         new Object[] { okvir.getBrojKonta(), okvir.getNaziv() };
+                ++i;
             }
-            ++i;
         }
         
         return rowData;

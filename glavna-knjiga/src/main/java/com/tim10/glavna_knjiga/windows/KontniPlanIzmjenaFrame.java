@@ -7,8 +7,11 @@ package com.tim10.glavna_knjiga.windows;
 
 import com.tim10.glavna_knjiga.dbutils.KontniPlanIzmjenaUtils;
 import com.tim10.glavna_knjiga.session.UserData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -89,6 +92,11 @@ public class KontniPlanIzmjenaFrame extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 103, 255));
         jButton2.setForeground(java.awt.Color.white);
         jButton2.setText("Izadji");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel1.setForeground(java.awt.Color.gray);
@@ -179,7 +187,12 @@ public class KontniPlanIzmjenaFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         bindData();
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,6 +302,12 @@ public class KontniPlanIzmjenaFrame extends javax.swing.JFrame {
     }
 
     private void bindData() {
-        KontniPlanIzmjenaUtils.commitData(this.tableData);
+        try {
+            KontniPlanIzmjenaUtils.commitData(this.tableData);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(KontniPlanIzmjenaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(KontniPlanIzmjenaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

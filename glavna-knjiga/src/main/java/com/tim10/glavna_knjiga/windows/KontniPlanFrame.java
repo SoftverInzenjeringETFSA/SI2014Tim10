@@ -9,6 +9,9 @@ import com.tim10.glavna_knjiga.dbutils.KontniPlanUtils;
 import com.tim10.glavna_knjiga.hibernate.HibernateSessionManager;
 import com.tim10.glavna_knjiga.mappings.KontniOkvir;
 import com.tim10.glavna_knjiga.session.UserData;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
@@ -55,10 +58,7 @@ public class KontniPlanFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -146,11 +146,23 @@ public class KontniPlanFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField1KeyTyped
 
     private void jFormattedTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyReleased
-        updateData();
+        try {
+            updateData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(KontniPlanFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(KontniPlanFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jFormattedTextField1KeyReleased
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        updateData();
+        try {
+            updateData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(KontniPlanFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(KontniPlanFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -200,7 +212,7 @@ public class KontniPlanFrame extends javax.swing.JFrame {
         );
     }
     
-    private void updateData() {
+    private void updateData() throws ClassNotFoundException, SQLException {
         this.jTable1.setModel(new DefaultTableModel(
                 utils.getKontoListByParameters(userData.getPreduzece().getNaziv(), this.jFormattedTextField1.getText(), this.jTextField1.getText()), new Object[] { "Sifra konta", "Naziv konta" }) 
         );

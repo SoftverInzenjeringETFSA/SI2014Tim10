@@ -5,14 +5,22 @@
  */
 package com.tim10.glavna_knjiga.dbutils;
 
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
 import com.tim10.glavna_knjiga.hibernate.HibernateSessionManager;
 import com.tim10.glavna_knjiga.mappings.KontniOkvir;
 import com.tim10.glavna_knjiga.mappings.KontniPlan;
 import com.tim10.glavna_knjiga.mappings.Preduzece;
+import com.tim10.glavna_knjiga.session.UserData;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -67,9 +75,42 @@ public class KontniPlanIzmjenaUtils {
         return rowData;
     }
     
-    public static void commitData(Object[][] tableData) {
+    public static void commitData(Object[][] tableData) throws ClassNotFoundException, SQLException {
+        // ad-hoc, hibernate not workiing... ne radi me hajbernejttt
+        
+        Class.forName("com.mysql.jdbc.Driver") ;
+        Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/Tim10", "EtfSI2014", "2014SIEtf");
+        
+        int kontniPlanId = UserData.getPreduzece().getKontniPlans().iterator().next().getIdKontniPlan();
+        
+        // deleting all kontos
+        String deleteQuery = "delete from KontniPlan_has_KontniOkvir where KontniPlan_IdKontniPlan = ?";
+        PreparedStatement deletePreparedStmt = conn.prepareStatement(deleteQuery);
+        deletePreparedStmt.setInt(1, kontniPlanId);
+        deletePreparedStmt.execute();
+
         for(Object[] row : tableData) {
-            
+            if((Boolean)(row[2])) {
+                System.out.println(row[0].toString());
+                // the mysql insert statement
+                String query = " insert into KontniPlan_has_KontniOkvir (KontniPlan_IdKontniPlan, KontniOkvir_Id)"
+                  + " values (?, ?)";
+
+                // create the mysql insert preparedstatement
+                PreparedStatement preparedStmt = conn.prepareStatement(query);
+                preparedStmt.setInt(2, Integer.parseInt(row[0].toString()));
+                preparedStmt.setInt(1, kontniPlanId);
+                preparedStmt.execute();
+            }
         }
+        
+        
+        /*
+        Statement stmt = (Statement) conn.createStatement() ;
+        String query = "select * from KontniPlan_has_KontniOkvir;";
+        ResultSet rs = stmt.executeQuery(query);
+        rs.first();
+        System.out.println(rs.getLong(1));
+        */
     }
 }
