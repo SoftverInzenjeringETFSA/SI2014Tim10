@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 
 /**
  *
- * @author AADMIN
+ * @author mnuhodzic
  */
 public class HomeFrameAdminUtilsTest extends TestCase {
     

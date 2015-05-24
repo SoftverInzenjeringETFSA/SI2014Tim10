@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 
 /**
  *
- * @author AADMIN
+ * @author mnuhodzic
  */
 public class DodajKorisnikaFrameUtilsTest extends TestCase {
     
@@ -36,9 +36,7 @@ public class DodajKorisnikaFrameUtilsTest extends TestCase {
         System.out.println("getInstace");
         DodajKorisnikaFrameUtils expResult = null;
         DodajKorisnikaFrameUtils result = DodajKorisnikaFrameUtils.getInstace();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);
     }
 
     /**

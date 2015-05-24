@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 
 /**
  *
- * @author AADMIN
+ * @author mnuhodzic
  */
 public class EditujKorisnikaFrameUtilsTest extends TestCase {
     
@@ -36,9 +36,7 @@ public class EditujKorisnikaFrameUtilsTest extends TestCase {
         System.out.println("getInstace");
         EditujKorisnikaFrameUtils expResult = null;
         EditujKorisnikaFrameUtils result = EditujKorisnikaFrameUtils.getInstace();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);
     }
 
     /**
@@ -50,9 +48,8 @@ public class EditujKorisnikaFrameUtilsTest extends TestCase {
         EditujKorisnikaFrameUtils instance = null;
         List<Korisnik> expResult = null;
         List<Korisnik> result = instance.getKorisnikPoJmbg(jmbg);
-        assertEquals(expResult, result);
+        assertNotSame(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,9 +60,7 @@ public class EditujKorisnikaFrameUtilsTest extends TestCase {
         EditujKorisnikaFrameUtils instance = null;
         List<Integer> expResult = null;
         List<Integer> result = instance.getAllJmbg();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);
     }
 
     /**
@@ -73,7 +68,8 @@ public class EditujKorisnikaFrameUtilsTest extends TestCase {
      */
     public void testSpasiPromjenu() {
         System.out.println("SpasiPromjenu");
-        Korisnik k = null;
+        Korisnik k =  new Korisnik();
+        k.setIme("Muris");
         EditujKorisnikaFrameUtils instance = null;
         instance.SpasiPromjenu(k);
         // TODO review the generated test code and remove the default call to fail.
@@ -88,9 +84,7 @@ public class EditujKorisnikaFrameUtilsTest extends TestCase {
         EditujKorisnikaFrameUtils instance = null;
         List<String> expResult = null;
         List<String> result = instance.getAllTipKorisnika();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);
     }
     
 }
