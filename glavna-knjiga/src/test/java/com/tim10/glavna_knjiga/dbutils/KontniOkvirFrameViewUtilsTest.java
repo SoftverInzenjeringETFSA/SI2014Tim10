@@ -34,22 +34,18 @@ public class KontniOkvirFrameViewUtilsTest extends TestCase {
         System.out.println("getInstace");
         KontniOkvirFrameViewUtils expResult = null;
         KontniOkvirFrameViewUtils result = KontniOkvirFrameViewUtils.getInstace();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);       
     }
-
     /**
      * Test of getAllKontniOkvir method, of class KontniOkvirFrameViewUtils.
      */
     public void testGetAllKontniOkvir() {
         System.out.println("getAllKontniOkvir");
-        KontniOkvirFrameViewUtils instance = null;
+        KontniOkvirFrameViewUtils instance = KontniOkvirFrameViewUtils.getInstace();
         Object[][] expResult = null;
         Object[][] result = instance.getAllKontniOkvir();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(823, result.length);
+        
     }
 
     /**
@@ -57,14 +53,16 @@ public class KontniOkvirFrameViewUtilsTest extends TestCase {
      */
     public void testGetAllKontniOkvirByParameters() {
         System.out.println("getAllKontniOkvirByParameters");
-        String sifra = "";
-        String naziv = "";
-        KontniOkvirFrameViewUtils instance = null;
+        String sifra = "0";
+        String naziv = "unijeti..."; //neko je bio kreativan pa je sva konta nazvao ovako :D
+        KontniOkvirFrameViewUtils instance = KontniOkvirFrameViewUtils.getInstace();
         Object[][] expResult = null;
         Object[][] result = instance.getAllKontniOkvirByParameters(sifra, naziv);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(4, result.length); 
+        //imaju 4 ova konta, vjerovatno je neko greskom dodao
+        //jedan je napocetku, i preostala tri su na kraju spiska
+        //moze se pogledati u bazi u tabeli kontniokvir
+        
     }
     
 }

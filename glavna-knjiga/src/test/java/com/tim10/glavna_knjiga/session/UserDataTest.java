@@ -35,10 +35,11 @@ public class UserDataTest extends TestCase {
     public void testGetInstace() {
         System.out.println("getInstace");
         UserData expResult = null;
+        Korisnik k = new Korisnik();
+        UserData.setKorisnik(k);
         UserData result = UserData.getInstace();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);
+        
     }
 
     /**
@@ -46,11 +47,17 @@ public class UserDataTest extends TestCase {
      */
     public void testGetKorisnik() {
         System.out.println("getKorisnik");
-        Korisnik expResult = null;
+        Korisnik expResult = new Korisnik();
+        
+        Korisnik k = new Korisnik();
+        expResult = k;
+        k.setIme("Haris");
+        UserData.setKorisnik(k);
+        
         Korisnik result = UserData.getKorisnik();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -58,10 +65,11 @@ public class UserDataTest extends TestCase {
      */
     public void testSetKorisnik() {
         System.out.println("setKorisnik");
-        Korisnik korisnik = null;
+        Korisnik korisnik = new Korisnik();
+        korisnik.setIme("Haris");
+        
         UserData.setKorisnik(korisnik);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("Haris",UserData.getKorisnik().getIme());
     }
 
     /**
@@ -70,10 +78,12 @@ public class UserDataTest extends TestCase {
     public void testGetPreduzece() {
         System.out.println("getPreduzece");
         Preduzece expResult = null;
+        Preduzece p = new Preduzece();
+        p.setNaziv("Preduzece1");
+        UserData.setPreduzece(p);
         Preduzece result = UserData.getPreduzece();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(p, result);
+        
     }
 
     /**
@@ -81,10 +91,10 @@ public class UserDataTest extends TestCase {
      */
     public void testSetPreduzece() {
         System.out.println("setPreduzece");
-        Preduzece preduzece = null;
+        Preduzece preduzece = new Preduzece();
+        preduzece.setNaziv("Preduzece2");
         UserData.setPreduzece(preduzece);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(null,UserData.getPreduzece());
     }
     
 }
