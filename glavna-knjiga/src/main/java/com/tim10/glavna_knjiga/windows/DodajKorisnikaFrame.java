@@ -270,6 +270,28 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         }
             
     }
+    private Boolean provjeri()
+    {
+        Boolean a = true;
+        if(txtDodajIme.getText().length() == 0)
+        {a  = false;}
+        if(txtDodajPrezime.getText().length() == 0)
+            {a  = false;}
+        if(txtDodajKorIme.getText().length() == 0)
+            {a  = false;}
+        if(txtDodajLozinku.getText().length() == 0)
+        {a = false;}
+        if(txtDodajJMBG.getText().length() == 0)
+        {a = false;}
+        if(txtDodajAdresu.getText().length() == 0)
+        {a = false;}
+        if(txtDodajFax.getText().length() == 0)
+        {a = false;}
+        if(txtDodajEmail.getText().length() == 0)
+        {a = false;}
+        
+        return a ;
+    }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -288,7 +310,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         String adresa = txtDodajAdresu.getText();
         Integer telefon = Integer.parseInt(txtDodajTelefon.getText());
         Integer fax = Integer.parseInt(txtDodajFax.getText());
-        String email = txtDodajEmail.getName();
+        String email = txtDodajEmail.getText();
         //---pokupljene vrijednosti---
         
         //---namjestanje tipa---
@@ -299,10 +321,14 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                 tip.setId(1);
                 
         //---namjestanje tipa---
+        if(!provjeri())
+        {
+            JOptionPane.showMessageDialog(null, "Neispravan unos", "Greška!", JOptionPane.INFORMATION_MESSAGE);
+        }
         
         
         
-        if(ProvjeriJmbg(jmbg))
+        if(ProvjeriJmbg(jmbg) && provjeri())
         {
             Korisnik korisnik = new Korisnik();
             korisnik.setId(utils.getIdNumber() + 1); //ID
