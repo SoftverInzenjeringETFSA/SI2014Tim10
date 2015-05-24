@@ -5,7 +5,12 @@
  */
 package com.tim10.glavna_knjiga.windows;
 
+import com.tim10.glavna_knjiga.dbutils.DodajKorisnikaFrameUtils;
+import com.tim10.glavna_knjiga.dbutils.EditujKorisnikaFrameUtils;
+import com.tim10.glavna_knjiga.mappings.Korisnik;
 import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,9 +21,14 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
     /**
      * Creates new form EditujKorisnikaFrame
      */
+    private EditujKorisnikaFrameUtils  utils = EditujKorisnikaFrameUtils.getInstace();
+    private Korisnik editKorisnik = new Korisnik();
     public EditujKorisnikaFrame() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
+        jComboBox1.setModel(new DefaultComboBoxModel(utils.getAllJmbg().toArray()));
+        
+        
     }
 
     /**
@@ -51,9 +61,9 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtEditujAdresu = new javax.swing.JTextField();
-        txtEditujTelefon = new javax.swing.JFormattedTextField();
-        txtEditujFax = new javax.swing.JFormattedTextField();
         txtEditujEmail = new javax.swing.JTextField();
+        txtEditujFax = new javax.swing.JTextField();
+        txtEditujTelefon = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -70,6 +80,11 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setPreferredSize(new java.awt.Dimension(150, 25));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 153, 255), 1, true), "Podaci o korisniku", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(51, 153, 255))); // NOI18N
@@ -133,27 +148,17 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
         txtEditujAdresu.setEnabled(false);
         txtEditujAdresu.setPreferredSize(new java.awt.Dimension(150, 25));
 
-        txtEditujTelefon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        try {
-            txtEditujTelefon.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###/###-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtEditujTelefon.setEnabled(false);
-        txtEditujTelefon.setPreferredSize(new java.awt.Dimension(150, 25));
-
-        txtEditujFax.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        try {
-            txtEditujFax.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###/###-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtEditujFax.setEnabled(false);
-        txtEditujFax.setPreferredSize(new java.awt.Dimension(150, 25));
-
         txtEditujEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtEditujEmail.setEnabled(false);
         txtEditujEmail.setPreferredSize(new java.awt.Dimension(150, 25));
+
+        txtEditujFax.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        txtEditujFax.setEnabled(false);
+        txtEditujFax.setPreferredSize(new java.awt.Dimension(150, 25));
+
+        txtEditujTelefon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        txtEditujTelefon.setEnabled(false);
+        txtEditujTelefon.setPreferredSize(new java.awt.Dimension(150, 25));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -181,13 +186,20 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEditujEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEditujFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEditujTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEditujAdresu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmEditujTipKorisnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtEditujEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEditujAdresu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmEditujTipKorisnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtEditujFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEditujTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -283,6 +295,23 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        editKorisnik = utils.getKorisnikPoJmbg(Integer.parseInt(String.valueOf(jComboBox1.getSelectedItem()))).get(0);
+        txtEditujIme.setText(editKorisnik.getIme().toString());
+        txtEditujPrezime.setText(editKorisnik.getPrezime().toString());
+        txtEditujKorIme.setText(editKorisnik.getKorisnickoIme().toString());
+        txtEditujLozinku.setText(editKorisnik.getLozinka().toString());
+        txtEditujJMBG.setText(editKorisnik.getJmbg().toString());
+        cmEditujTipKorisnika.setSelectedItem(editKorisnik.getKorisnikTipovi());
+        txtEditujAdresu.setText(editKorisnik.getAdresa());
+        txtEditujTelefon.setText(editKorisnik.getTelefon().toString());
+        txtEditujFax.setText(editKorisnik.getJmbg().toString());
+        txtEditujEmail.setText(editKorisnik.getEmail().toString());
+        JOptionPane.showMessageDialog(null,editKorisnik.getIme().toString(), null, JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(null,String.valueOf(jComboBox1.getSelectedItem()), null, JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -337,12 +366,12 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtEditujAdresu;
     private javax.swing.JTextField txtEditujEmail;
-    private javax.swing.JFormattedTextField txtEditujFax;
+    private javax.swing.JTextField txtEditujFax;
     private javax.swing.JTextField txtEditujIme;
     private javax.swing.JTextField txtEditujJMBG;
     private javax.swing.JTextField txtEditujKorIme;
     private javax.swing.JPasswordField txtEditujLozinku;
     private javax.swing.JTextField txtEditujPrezime;
-    private javax.swing.JFormattedTextField txtEditujTelefon;
+    private javax.swing.JTextField txtEditujTelefon;
     // End of variables declaration//GEN-END:variables
 }

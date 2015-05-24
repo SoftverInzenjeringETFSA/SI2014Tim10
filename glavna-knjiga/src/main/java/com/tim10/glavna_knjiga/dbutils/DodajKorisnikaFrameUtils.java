@@ -42,6 +42,16 @@ public class DodajKorisnikaFrameUtils {
         return allKorisnikTipovi;
     }
     
+    //ID broj
+    public int getIdNumber()
+    {
+        Query query = session.createQuery("select ko from Korisnik ko");
+        List<Korisnik> allKorisnici = query.list();
+        
+        return allKorisnici.size();
+    }
+    //
+    
     public void ustekaj (Korisnik k)
     {
         Transaction tx = session.beginTransaction();

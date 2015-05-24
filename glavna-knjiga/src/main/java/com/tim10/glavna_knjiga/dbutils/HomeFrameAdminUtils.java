@@ -41,7 +41,7 @@ public class HomeFrameAdminUtils {
         List<Korisnik> allKorisnici = query.list();
         
         Object[][] rowData = new Object[2][];
-        System.out.println(allKorisnici.size());
+        
         
         for(int i = 0; i < allKorisnici.size(); i++)
         {

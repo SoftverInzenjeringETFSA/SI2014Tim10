@@ -61,9 +61,9 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtDodajAdresu = new javax.swing.JTextField();
-        txtDodajFax = new javax.swing.JFormattedTextField();
         txtDodajEmail = new javax.swing.JTextField();
         txtDodajTelefon = new javax.swing.JTextField();
+        txtDodajFax = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -132,14 +132,6 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         txtDodajAdresu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajAdresu.setPreferredSize(new java.awt.Dimension(150, 25));
 
-        txtDodajFax.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        try {
-            txtDodajFax.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###/###-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtDodajFax.setPreferredSize(new java.awt.Dimension(150, 25));
-
         txtDodajEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajEmail.setPreferredSize(new java.awt.Dimension(150, 25));
 
@@ -148,6 +140,14 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         txtDodajTelefon.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDodajTelefonKeyTyped(evt);
+            }
+        });
+
+        txtDodajFax.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        txtDodajFax.setPreferredSize(new java.awt.Dimension(150, 25));
+        txtDodajFax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDodajFaxKeyTyped(evt);
             }
         });
 
@@ -180,10 +180,10 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDodajEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDodajAdresu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmDodajTipKorisnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDodajTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDodajFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -222,6 +222,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\images\\save-kor.png")); // NOI18N
         jButton1.setToolTipText("Spasi podatke o korisniku");
         jButton1.setPreferredSize(new java.awt.Dimension(35, 35));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -261,16 +262,52 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "Neispravan format telefona", "naslov", JOptionPane.INFORMATION_MESSAGE);
         }
+        //---pokupljene vrijednosti---
+        String ime = txtDodajIme.getText();
+        String prezime = txtDodajPrezime.getText();
+        String korisnickoIme = txtDodajKorIme.getText();
+        String lozinka = txtDodajLozinku.getText();
+        Integer jmbg = Integer.parseInt(txtDodajJMBG.getText());
+        String tipKorisnika = String.valueOf(cmDodajTipKorisnika.getSelectedItem());
+        String adresa = txtDodajAdresu.getText();
+        Integer telefon = Integer.parseInt(txtDodajTelefon.getText());
+        Integer fax = Integer.parseInt(txtDodajFax.getText());
+        String email = txtDodajEmail.getName();
+        //---pokupljene vrijednosti---
         
-        Korisnik k = new Korisnik();
+        //---namjestanje tipa---
+        KorisnikTipovi tip = new KorisnikTipovi();
+        if(tipKorisnika.equals("Racunovodja"))
+            tip.setId(2);
+        else if(tipKorisnika.equals("Administrator"))
+                tip.setId(1);
+                
+        //---namjestanje tipa---
+        
+        
+        Korisnik korisnik = new Korisnik();
+        korisnik.setId(utils.getIdNumber() + 1); //ID
+        korisnik.setIme(ime);
+        korisnik.setPrezime(prezime);
+        korisnik.setKorisnickoIme(korisnickoIme);
+        korisnik.setLozinka(lozinka);
+        korisnik.setJmbg(jmbg);
+        korisnik.setKorisnikTipovi(tip);
+        korisnik.setAdresa(adresa);
+        korisnik.setTelefon(telefon);
+        korisnik.setFax(fax);
+        korisnik.setEmail(email);
+        utils.ustekaj(korisnik);
+        
+        /*Korisnik k = new Korisnik();
         KorisnikTipovi kt = new KorisnikTipovi();
         kt.setId(1);
         k.setIme("Mastodont");
         k.setPrezime("MastodoncinMrtva");
         k.setId(3);
         k.setKorisnikTipovi(kt);
-        utils.istekaj(k);
-        
+        utils.istekaj(k);*/
+        dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -291,6 +328,10 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
             evt.consume();  
         }
     }//GEN-LAST:event_txtDodajImeKeyTyped
+
+    private void txtDodajFaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDodajFaxKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDodajFaxKeyTyped
 
     /**
      * @param args the command line arguments
@@ -344,7 +385,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtDodajAdresu;
     private javax.swing.JTextField txtDodajEmail;
-    private javax.swing.JFormattedTextField txtDodajFax;
+    private javax.swing.JTextField txtDodajFax;
     private javax.swing.JTextField txtDodajIme;
     private javax.swing.JTextField txtDodajJMBG;
     private javax.swing.JTextField txtDodajKorIme;
