@@ -52,16 +52,5 @@ public class KontniPlanIzmjenaUtilsTest extends TestCase {
         // TODO review the generated test code and remove the default call to fail.
         
     }
-
-    /**
-     * Test of commitData method, of class KontniPlanIzmjenaUtils.
-     */
-    public void testCommitData() {
-        System.out.println("commitData");
-        Object[][] tableData = null;
-        KontniPlanIzmjenaUtils.commitData(tableData);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

@@ -34,9 +34,9 @@ public class KontniPlanUtilsTest extends TestCase {
         System.out.println("getInstace");
         KontniPlanUtils expResult = null;
         KontniPlanUtils result = KontniPlanUtils.getInstace();
-        assertEquals(expResult, result);
+        assertNotSame(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -44,13 +44,12 @@ public class KontniPlanUtilsTest extends TestCase {
      */
     public void testGetKontoListByName() {
         System.out.println("getKontoListByName");
-        String naziv = "";
-        KontniPlanUtils instance = null;
+        String naziv = "ocb";
+        KontniPlanUtils instance = KontniPlanUtils.getInstace();
         Object[][] expResult = null;
         Object[][] result = instance.getKontoListByName(naziv);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertEquals(2, result.length);
     }
 
     /**
@@ -58,15 +57,15 @@ public class KontniPlanUtilsTest extends TestCase {
      */
     public void testGetKontoListByParameters() {
         System.out.println("getKontoListByParameters");
-        String naziv = "";
-        String sifraKonta = "";
-        String nazivKonta = "";
-        KontniPlanUtils instance = null;
+        String naziv = "ocb";
+        String sifraKonta = "1";
+        String nazivKonta = "Moj kontni planic";
+        KontniPlanUtils instance = KontniPlanUtils.getInstace();
         Object[][] expResult = null;
         Object[][] result = instance.getKontoListByParameters(naziv, sifraKonta, nazivKonta);
-        assertEquals(expResult, result);
+        assertEquals(2, result.length);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
     
 }
