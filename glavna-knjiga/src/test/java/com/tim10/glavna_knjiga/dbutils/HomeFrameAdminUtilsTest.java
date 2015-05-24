@@ -49,15 +49,6 @@ public class HomeFrameAdminUtilsTest extends TestCase {
         assertNotSame(expResult, result);
     }
 
-    /**
-     * Test of getDefModel method, of class HomeFrameAdminUtils.
-     */
-    public void testGetDefModel() {
-        System.out.println("getDefModel");
-        HomeFrameAdminUtils instance = null;
-        DefaultTableModel expResult = null;
-        DefaultTableModel result = instance.getDefModel();
-        assertNotSame(expResult, result);
-    }
+    
     
 }
