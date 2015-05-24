@@ -23,8 +23,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class KontniPlanIzmjenaFrame extends javax.swing.JFrame {
 
-    public class objekat implements Serializable {
-    private Object[][] tableData  ;}
+    
+    private Object[][] tableData;
 
     /**
      * Creates new form KontniPlanIzmjenaFrame

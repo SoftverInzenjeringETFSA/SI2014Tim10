@@ -361,6 +361,7 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
             editKorisnik.setEmail(txtEditujEmail.getText());
 
             utils.SpasiPromjenu(editKorisnik);
+            dispose();
             JOptionPane.showMessageDialog(null,editKorisnik.getIme().toString() + " " + editKorisnik.getKorisnikTipovi().getNaziv(), null, JOptionPane.INFORMATION_MESSAGE);
         
         

@@ -68,4 +68,13 @@ public class DodajKorisnikaFrameUtils {
         tx.commit();
     }
     
+    public List<Korisnik> dajKorisnikaJmbg(int jmbg)
+    {
+        
+        Query query = session.createQuery("select ko from Korisnik ko where ko.jmbg='" + jmbg + "'");
+        List<Korisnik> edit = query.list();
+        return edit;
+        
+    }
+    
 }

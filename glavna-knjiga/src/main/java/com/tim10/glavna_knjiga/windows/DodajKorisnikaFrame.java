@@ -9,6 +9,7 @@ import com.tim10.glavna_knjiga.dbutils.DodajKorisnikaFrameUtils;
 import com.tim10.glavna_knjiga.mappings.Korisnik;
 import com.tim10.glavna_knjiga.mappings.KorisnikTipovi;
 import java.awt.Color;
+import java.util.List;
 import static javassist.CtMethod.ConstParameter.string;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -255,6 +256,21 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private Boolean ProvjeriJmbg(int jmbg)
+    {
+        List<Korisnik> korisnici = utils.dajKorisnikaJmbg(jmbg);
+        if(korisnici.size() == 0)
+        {
+            return true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Korisnik sa ovim jmbg vec postiji", "Greška!", JOptionPane.INFORMATION_MESSAGE);
+           return false; 
+        }
+            
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String a = txtDodajTelefon.getText();
@@ -285,19 +301,25 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         //---namjestanje tipa---
         
         
-        Korisnik korisnik = new Korisnik();
-        korisnik.setId(utils.getIdNumber() + 1); //ID
-        korisnik.setIme(ime);
-        korisnik.setPrezime(prezime);
-        korisnik.setKorisnickoIme(korisnickoIme);
-        korisnik.setLozinka(lozinka);
-        korisnik.setJmbg(jmbg);
-        korisnik.setKorisnikTipovi(tip);
-        korisnik.setAdresa(adresa);
-        korisnik.setTelefon(telefon);
-        korisnik.setFax(fax);
-        korisnik.setEmail(email);
-        utils.ustekaj(korisnik);
+        
+        if(ProvjeriJmbg(jmbg))
+        {
+            Korisnik korisnik = new Korisnik();
+            korisnik.setId(utils.getIdNumber() + 1); //ID
+            korisnik.setIme(ime);
+            korisnik.setPrezime(prezime);
+            korisnik.setKorisnickoIme(korisnickoIme);
+            korisnik.setLozinka(lozinka);
+            korisnik.setJmbg(jmbg);
+            korisnik.setKorisnikTipovi(tip);
+            korisnik.setAdresa(adresa);
+            korisnik.setTelefon(telefon);
+            korisnik.setFax(fax);
+            korisnik.setEmail(email);
+            utils.ustekaj(korisnik);
+            dispose();
+        }
+        
         
         /*Korisnik k = new Korisnik();
         KorisnikTipovi kt = new KorisnikTipovi();
@@ -307,7 +329,8 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         k.setId(3);
         k.setKorisnikTipovi(kt);
         utils.istekaj(k);*/
-        dispose();
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

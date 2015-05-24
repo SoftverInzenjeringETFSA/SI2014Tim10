@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -55,7 +56,7 @@ public class HomeFrameAdminUtils {
     {
         Query query = session.createQuery("select ko from Korisnik ko");
         List<Korisnik> allKorisnici = query.list();
-        
+        System.out.println(allKorisnici.size());
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"Ime", "Prezime", "Korisničko ime", "JMBG", "Adresa", "Telefon", "Tip korisnika"});
         for (Korisnik k : allKorisnici)
@@ -71,4 +72,20 @@ public class HomeFrameAdminUtils {
         return model;
     }
     
+    //vrati korisnika na osnovu jmbga
+    public List<Korisnik> getKorisnikJmbg(int jmbg)
+    { 
+        Query query = session.createQuery("select ko from Korisnik ko where ko.jmbg='" + jmbg + "'");
+        List<Korisnik> del = query.list();
+        return del;
+        
+    }
+    
+    //obrisi krosinika 
+    public void ObrisiKorisnika (Korisnik k)
+    {
+        Transaction tx = session.beginTransaction();
+        session.delete(k);
+        tx.commit();
+    }
 }
