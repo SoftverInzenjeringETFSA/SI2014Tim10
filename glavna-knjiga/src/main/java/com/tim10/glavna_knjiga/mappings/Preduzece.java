@@ -2,6 +2,7 @@ package com.tim10.glavna_knjiga.mappings;
 
 // Generated May 24, 2015 3:19:06 PM by Hibernate Tools 3.4.0.CR1
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Preduzece", catalog = "Tim10")
-public class Preduzece implements java.io.Serializable {
+public class Preduzece implements Serializable {
 
 	private int idPreduzece;
 	private String naziv;

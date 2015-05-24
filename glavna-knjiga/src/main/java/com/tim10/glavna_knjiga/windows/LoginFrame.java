@@ -45,13 +45,14 @@ public class LoginFrame extends JFrame {
 	private JLabel lblNetacniLoginPodaci;
 	private JComboBox cmbTipKorisnika;
 
-	private LoginPanelUtils utils = LoginPanelUtils.getInstace();
+	private LoginPanelUtils utils1 = LoginPanelUtils.getInstace();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+                     @Override
 			public void run() {
 				try {
 					LoginFrame frame = new LoginFrame();
@@ -97,9 +98,9 @@ public class LoginFrame extends JFrame {
 
 		cmbTipKorisnika = new JComboBox();
 		cmbTipKorisnika.addActionListener(new ActionListener() {
+                    @Override
 			public void actionPerformed(ActionEvent e) {
-				if (((JComboBox) (e.getSource())).getSelectedItem().toString()
-						.equals("Racunovodja")) {
+				if ("Racunovodja".equals(((JComboBox) (e.getSource())).getSelectedItem().toString())) {
 					lblPreduzece.setVisible(true);
 					cmbPreduzece.setVisible(true);
 				} else {
@@ -109,11 +110,12 @@ public class LoginFrame extends JFrame {
 			}
 		});
 		cmbTipKorisnika.addPropertyChangeListener(new PropertyChangeListener() {
+                    @Override
 			public void propertyChange(PropertyChangeEvent evt) {
 
 			}
 		});
-		cmbTipKorisnika.setModel(new DefaultComboBoxModel(utils
+		cmbTipKorisnika.setModel(new DefaultComboBoxModel(utils1
 				.getAllKorisnikTipoviNazivi().toArray()));
 		cmbTipKorisnika.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbTipKorisnika.setBackground(Color.WHITE);
@@ -160,7 +162,7 @@ public class LoginFrame extends JFrame {
 		pnLogin.add(lblPreduzece);
 
 		cmbPreduzece = new JComboBox();
-		cmbPreduzece.setModel(new DefaultComboBoxModel(utils.getAllPreduzeca()
+		cmbPreduzece.setModel(new DefaultComboBoxModel(utils1.getAllPreduzeca()
 				.toArray()));
 		cmbPreduzece.setForeground(Color.LIGHT_GRAY);
 		cmbPreduzece.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -171,6 +173,7 @@ public class LoginFrame extends JFrame {
 
 		JButton btnUlogujSe = new JButton("Uloguj se!");
 		btnUlogujSe.addActionListener(new ActionListener() {
+                    @Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -223,18 +226,19 @@ public class LoginFrame extends JFrame {
 		if (isLoginValid) {
 			UserData userData = UserData.getInstace();
 			userData.setKorisnik(utils.getKorisnikByUsername(korisnickoIme));
-			if (cmbTipKorisnika.getSelectedItem().toString().equals("Racunovodja")) {
+			if ("Racunovodja".equals(cmbTipKorisnika.getSelectedItem().toString())) {
 				String preduzece = cmbPreduzece.getSelectedItem().toString();
 				userData.setPreduzece(utils.getPreduzeceByName(preduzece));
 			} else {
 				userData.setPreduzece(null);
 			}
 			
-			if(tipKorisnika.equals("Racunovodja")) {
+			if("Racunovodja".equals(tipKorisnika)) {
+                                
 				System.out.println("entered...");
 				HomeFrameRacunovodja homeFrame = new HomeFrameRacunovodja();
 				homeFrame.setVisible(true);
-			} else if(tipKorisnika.equals("Administrator")) {
+			} else if("Administrator".equals(tipKorisnika)) {
 				HomeFrameAdmin adminHomeFrame = new HomeFrameAdmin();
                                 adminHomeFrame.setVisible(true);
 			}
