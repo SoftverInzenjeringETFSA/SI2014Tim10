@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 22, 2015 3:37:10 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 24, 2015 3:19:20 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.tim10.glavna_knjiga.mappings.Nalozi" table="Nalozi" catalog="Tim10">
         <id name="id" type="int">
@@ -14,14 +14,20 @@
         <many-to-one name="preduzece" class="com.tim10.glavna_knjiga.mappings.Preduzece" fetch="select">
             <column name="Preduzece_IdPreduzece" not-null="true" />
         </many-to-one>
+        <property name="naziv" type="string">
+            <column name="Naziv" length="45" />
+        </property>
+        <property name="sifraNaloga" type="string">
+            <column name="SifraNaloga" length="10" unique="true" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="Status" />
+        </property>
         <property name="datumKnjizenja" type="timestamp">
             <column name="DatumKnjizenja" length="0" />
         </property>
-        <property name="status" type="java.lang.Boolean">
-            <column name="Status" />
-        </property>
-        <property name="nalozicol" type="string">
-            <column name="Nalozicol" length="45" />
+        <property name="datumKreiranja" type="timestamp">
+            <column name="DatumKreiranja" length="0" />
         </property>
         <set name="stavkeNalogas" table="StavkeNaloga" inverse="true" lazy="true" fetch="select">
             <key>

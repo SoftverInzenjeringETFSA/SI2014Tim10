@@ -25,7 +25,7 @@ public class KontniPlanIzmjenaUtils {
 
     private static Boolean setContainsKonto(KontniOkvir okvir, Set<KontniOkvir> set) {
         for(KontniOkvir setOkvir : set) {
-            if(setOkvir.getId() == okvir.getId()) {
+            if(setOkvir.getId().equals(okvir.getId())) {
                 return true;
             }
         }

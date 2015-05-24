@@ -1,6 +1,6 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 24, 2015 3:19:06 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +27,7 @@ public class KontniOkvir implements java.io.Serializable {
 	private String brojKonta;
 	private String naziv;
 	private Set<KontniPlan> kontniPlans = new HashSet<KontniPlan>(0);
+	private Set<StavkeNaloga> stavkeNalogas = new HashSet<StavkeNaloga>(0);
 
 	public KontniOkvir() {
 	}
@@ -36,10 +38,11 @@ public class KontniOkvir implements java.io.Serializable {
 	}
 
 	public KontniOkvir(String brojKonta, String naziv,
-			Set<KontniPlan> kontniPlans) {
+			Set<KontniPlan> kontniPlans, Set<StavkeNaloga> stavkeNalogas) {
 		this.brojKonta = brojKonta;
 		this.naziv = naziv;
 		this.kontniPlans = kontniPlans;
+		this.stavkeNalogas = stavkeNalogas;
 	}
 
 	@Id
@@ -79,6 +82,15 @@ public class KontniOkvir implements java.io.Serializable {
 
 	public void setKontniPlans(Set<KontniPlan> kontniPlans) {
 		this.kontniPlans = kontniPlans;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "kontniOkvir")
+	public Set<StavkeNaloga> getStavkeNalogas() {
+		return this.stavkeNalogas;
+	}
+
+	public void setStavkeNalogas(Set<StavkeNaloga> stavkeNalogas) {
+		this.stavkeNalogas = stavkeNalogas;
 	}
 
 }

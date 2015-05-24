@@ -1,6 +1,6 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 24, 2015 3:19:06 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -24,7 +24,9 @@ public class StavkeNaloga implements java.io.Serializable {
 
 	private int id;
 	private Nalozi nalozi;
+	private Klijent klijent;
 	private Dokumenti dokumenti;
+	private KontniOkvir kontniOkvir;
 	private String naziv;
 	private Date datumKreiranja;
 	private BigDecimal duguje;
@@ -33,18 +35,23 @@ public class StavkeNaloga implements java.io.Serializable {
 	public StavkeNaloga() {
 	}
 
-	public StavkeNaloga(int id, Nalozi nalozi, Dokumenti dokumenti) {
+	public StavkeNaloga(int id, Nalozi nalozi, Klijent klijent,
+			Dokumenti dokumenti, KontniOkvir kontniOkvir) {
 		this.id = id;
 		this.nalozi = nalozi;
+		this.klijent = klijent;
 		this.dokumenti = dokumenti;
+		this.kontniOkvir = kontniOkvir;
 	}
 
-	public StavkeNaloga(int id, Nalozi nalozi, Dokumenti dokumenti,
-			String naziv, Date datumKreiranja, BigDecimal duguje,
-			BigDecimal potrazuje) {
+	public StavkeNaloga(int id, Nalozi nalozi, Klijent klijent,
+			Dokumenti dokumenti, KontniOkvir kontniOkvir, String naziv,
+			Date datumKreiranja, BigDecimal duguje, BigDecimal potrazuje) {
 		this.id = id;
 		this.nalozi = nalozi;
+		this.klijent = klijent;
 		this.dokumenti = dokumenti;
+		this.kontniOkvir = kontniOkvir;
 		this.naziv = naziv;
 		this.datumKreiranja = datumKreiranja;
 		this.duguje = duguje;
@@ -72,6 +79,16 @@ public class StavkeNaloga implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Klijent_Id", nullable = false)
+	public Klijent getKlijent() {
+		return this.klijent;
+	}
+
+	public void setKlijent(Klijent klijent) {
+		this.klijent = klijent;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
 			@JoinColumn(name = "Dokumenti_Id", referencedColumnName = "Id", nullable = false),
 			@JoinColumn(name = "Dokumenti_VrstaDokumenta_Id", referencedColumnName = "VrstaDokumenta_Id", nullable = false) })
@@ -81,6 +98,16 @@ public class StavkeNaloga implements java.io.Serializable {
 
 	public void setDokumenti(Dokumenti dokumenti) {
 		this.dokumenti = dokumenti;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "KontniOkvir_Id", nullable = false)
+	public KontniOkvir getKontniOkvir() {
+		return this.kontniOkvir;
+	}
+
+	public void setKontniOkvir(KontniOkvir kontniOkvir) {
+		this.kontniOkvir = kontniOkvir;
 	}
 
 	@Column(name = "Naziv", length = 45)

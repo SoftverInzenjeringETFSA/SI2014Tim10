@@ -1,6 +1,6 @@
 package com.tim10.glavna_knjiga.mappings;
 
-// Generated May 22, 2015 3:37:37 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 24, 2015 3:19:06 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;

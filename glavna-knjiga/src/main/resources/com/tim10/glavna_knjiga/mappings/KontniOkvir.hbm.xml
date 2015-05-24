@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 22, 2015 3:37:10 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 24, 2015 3:19:20 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.tim10.glavna_knjiga.mappings.KontniOkvir" table="KontniOkvir" catalog="Tim10">
         <id name="id" type="java.lang.Integer">
@@ -21,6 +21,12 @@
             <many-to-many entity-name="com.tim10.glavna_knjiga.mappings.KontniPlan">
                 <column name="KontniPlan_IdKontniPlan" not-null="true" />
             </many-to-many>
+        </set>
+        <set name="stavkeNalogas" table="StavkeNaloga" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="KontniOkvir_Id" not-null="true" />
+            </key>
+            <one-to-many class="com.tim10.glavna_knjiga.mappings.StavkeNaloga" />
         </set>
     </class>
 </hibernate-mapping>
