@@ -34,9 +34,9 @@ public class KontniPlanIzmjenaUtilsTest extends TestCase {
         System.out.println("getInstace");
         KontniPlanIzmjenaUtils expResult = null;
         KontniPlanIzmjenaUtils result = KontniPlanIzmjenaUtils.getInstace();
-        assertEquals(expResult, result);
+        assertNotSame(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -44,12 +44,13 @@ public class KontniPlanIzmjenaUtilsTest extends TestCase {
      */
     public void testGetKontaBooleanList() {
         System.out.println("getKontaBooleanList");
-        String nazivPreduzeca = "";
+        String nazivPreduzeca = "ocb";
         Object[][] expResult = null;
         Object[][] result = KontniPlanIzmjenaUtils.getKontaBooleanList(nazivPreduzeca);
-        assertEquals(expResult, result);
+        //Kontnih planova ima 823 
+        assertEquals(result.length, 823);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
