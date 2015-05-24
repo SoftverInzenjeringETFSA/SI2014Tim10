@@ -75,7 +75,8 @@ public class HomeFrameAdminUtils {
     //vrati korisnika na osnovu jmbga
     public List<Korisnik> getKorisnikJmbg(int jmbg)
     { 
-        Query query = session.createQuery("select ko from Korisnik ko where ko.jmbg='" + jmbg + "'");
+        Query query = session.createQuery("select ko from Korisnik ko where ko.jmbg=?");
+        query = query.setParameter(0,jmbg); 
         List<Korisnik> del = query.list();
         return del;
         

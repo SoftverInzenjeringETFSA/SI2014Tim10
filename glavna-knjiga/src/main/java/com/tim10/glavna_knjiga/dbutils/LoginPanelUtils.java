@@ -41,7 +41,8 @@ public class LoginPanelUtils {
 	}
 	
 	public Boolean isValidUsernamePasswordCombination(String username, String password, String userType) {
-		Query query = session.createQuery("select k from Korisnik k where k.korisnickoIme='" + username + "'");	
+		Query query = session.createQuery("select k from Korisnik k where k.korisnickoIme=?");	
+                query = query.setParameter(0,username); 
 		List<Korisnik> matchingUsers = query.list();
 		
 		if(matchingUsers.size() == 0) {
@@ -59,7 +60,8 @@ public class LoginPanelUtils {
 	}
 
 	public Korisnik getKorisnikByUsername(String username) {
-		Query query = session.createQuery("select k from Korisnik k where k.korisnickoIme='" + username + "'");
+		Query query = session.createQuery("select k from Korisnik k where k.korisnickoIme=?'");
+                query = query.setParameter(0,username);
 		List<Korisnik> matchingKorisnikList = query.list();
 		
 		return matchingKorisnikList.get(0);
@@ -68,7 +70,8 @@ public class LoginPanelUtils {
 	public Preduzece getPreduzeceByName(String name) {
 		System.out.println("Preduzece name: " + name);
 		
-		Query query = session.createQuery("select p from Preduzece p where p.naziv='" + name + "'");
+		Query query = session.createQuery("select p from Preduzece p where p.naziv=?");
+                query = query.setParameter(0,name);
 		List<Preduzece> matchingPreduzeceList = query.list();
 		
 		System.out.println("query result size: " + matchingPreduzeceList.size());

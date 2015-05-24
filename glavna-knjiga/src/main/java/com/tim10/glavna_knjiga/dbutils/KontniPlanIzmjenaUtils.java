@@ -60,7 +60,8 @@ public class KontniPlanIzmjenaUtils {
         Object[][] rowData = new Object[allKontniOkvir.size()][];
         
         // aaaaa SQL injj hejteriii
-        Query preduzeceQuery = session.createQuery("select p from Preduzece p where p.naziv='" + nazivPreduzeca + "'");
+        Query preduzeceQuery = session.createQuery("select p from Preduzece p where p.naziv=?");
+        preduzeceQuery = preduzeceQuery.setParameter(0,nazivPreduzeca); 
         Preduzece preduzece = (Preduzece) preduzeceQuery.list().get(0);
         
         Set<KontniPlan> kontniPlanoviPreduzeca = preduzece.getKontniPlans();

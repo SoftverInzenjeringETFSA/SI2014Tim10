@@ -38,7 +38,8 @@ public class KontniPlanUtils {
     }
 
     public Object[][] getKontoListByName(String naziv) {
-        Query query = session.createQuery("select kp from KontniPlan kp where kp.preduzece.naziv='" + naziv + "'");
+        Query query = session.createQuery("select kp from KontniPlan kp where kp.preduzece.naziv=?");
+        query = query.setParameter(0,naziv); 
         List<KontniPlan> allKontniPlan = query.list();
 
         if(allKontniPlan.size() == 0) {
@@ -61,7 +62,8 @@ public class KontniPlanUtils {
     public Object[][] getKontoListByParameters(String naziv, String sifraKonta, String nazivKonta) throws ClassNotFoundException, SQLException {
         session = HibernateSessionManager.getSessionFactory().openSession();
         
-        Query query = session.createQuery("select kp from KontniPlan kp where kp.preduzece.naziv='" + naziv + "'");
+        Query query = session.createQuery("select kp from KontniPlan kp where kp.preduzece.naziv=?");
+        query = query.setParameter(0,naziv); 
         List<KontniPlan> allKontniPlan = query.list();
         
         System.out.println("naziv: " + nazivKonta);
