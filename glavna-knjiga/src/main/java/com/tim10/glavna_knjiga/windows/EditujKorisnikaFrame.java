@@ -8,6 +8,7 @@ package com.tim10.glavna_knjiga.windows;
 import com.tim10.glavna_knjiga.dbutils.DodajKorisnikaFrameUtils;
 import com.tim10.glavna_knjiga.dbutils.EditujKorisnikaFrameUtils;
 import com.tim10.glavna_knjiga.mappings.Korisnik;
+import com.tim10.glavna_knjiga.mappings.KorisnikTipovi;
 import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -23,10 +24,13 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
      */
     private EditujKorisnikaFrameUtils  utils = EditujKorisnikaFrameUtils.getInstace();
     private Korisnik editKorisnik = new Korisnik();
+    private Boolean pressed = false; //da li je odabrao korisnika iz comboboxa!
     public EditujKorisnikaFrame() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         jComboBox1.setModel(new DefaultComboBoxModel(utils.getAllJmbg().toArray()));
+        cmEditujTipKorisnika.setModel(new DefaultComboBoxModel(utils.getAllTipKorisnika().toArray()));
+        jButton1.setEnabled(false);
         
         
     }
@@ -129,7 +133,6 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
 
         cmEditujTipKorisnika.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmEditujTipKorisnika.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        cmEditujTipKorisnika.setEnabled(false);
         cmEditujTipKorisnika.setPreferredSize(new java.awt.Dimension(150, 25));
 
         jLabel8.setText("Adresa stanovanja :");
@@ -268,6 +271,11 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\images\\save-kor.png")); // NOI18N
         jButton1.setToolTipText("Snimi promjene podataka");
         jButton1.setPreferredSize(new java.awt.Dimension(43, 43));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -297,6 +305,7 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        jButton1.setEnabled(true);
         editKorisnik = utils.getKorisnikPoJmbg(Integer.parseInt(String.valueOf(jComboBox1.getSelectedItem()))).get(0);
         txtEditujIme.setText(editKorisnik.getIme().toString());
         txtEditujPrezime.setText(editKorisnik.getPrezime().toString());
@@ -307,10 +316,55 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
         txtEditujAdresu.setText(editKorisnik.getAdresa());
         txtEditujTelefon.setText(editKorisnik.getTelefon().toString());
         txtEditujFax.setText(editKorisnik.getJmbg().toString());
-        txtEditujEmail.setText(editKorisnik.getEmail().toString());
-        JOptionPane.showMessageDialog(null,editKorisnik.getIme().toString(), null, JOptionPane.INFORMATION_MESSAGE);
+        
+        txtEditujPrezime.setEnabled(true);
+        txtEditujPrezime.setEditable(true);
+        
+        txtEditujAdresu.setEditable(true);
+        txtEditujAdresu.setEnabled(true);
+        
+        txtEditujKorIme.setEnabled(true);
+        txtEditujKorIme.setEditable(true);
+        
+        txtEditujEmail.setEnabled(true);
+        txtEditujEmail.setEditable(true);
+        
+        
+        //txtEditujEmail.setText(editKorisnik.getEmail().toString());
+        //JOptionPane.showMessageDialog(null,, null, JOptionPane.INFORMATION_MESSAGE);
         //JOptionPane.showMessageDialog(null,String.valueOf(jComboBox1.getSelectedItem()), null, JOptionPane.INFORMATION_MESSAGE);
+       
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    //ucitao je podatke, pokupi ono sto je textboxovima, bilo - ne bilo promjena
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+       
+            editKorisnik.setId(editKorisnik.getId());
+            editKorisnik.setIme(txtEditujIme.getText());
+            editKorisnik.setPrezime(txtEditujPrezime.getText());
+            editKorisnik.setKorisnickoIme(txtEditujKorIme.getText());
+            editKorisnik.setLozinka(txtEditujLozinku.getText());
+            editKorisnik.setJmbg(Integer.parseInt(txtEditujJMBG.getText().toString()));
+
+            /*KorisnikTipovi kt = new KorisnikTipovi();
+            String tip = String.valueOf(cmEditujTipKorisnika.getSelectedItem());
+            if(tip.equals("Racunovodja"))
+                kt.setId(2);
+            else if(tip.equals("Administrator"))
+                    kt.setId(1);*/
+
+            editKorisnik.setKorisnikTipovi(editKorisnik.getKorisnikTipovi());
+            editKorisnik.setAdresa(txtEditujAdresu.getText());
+            editKorisnik.setTelefon(Integer.parseInt(txtEditujTelefon.getText().toString()));
+            editKorisnik.setFax(Integer.parseInt(txtEditujFax.getText().toString()));
+            editKorisnik.setEmail(txtEditujEmail.getText());
+
+            utils.SpasiPromjenu(editKorisnik);
+            JOptionPane.showMessageDialog(null,editKorisnik.getIme().toString() + " " + editKorisnik.getKorisnikTipovi().getNaziv(), null, JOptionPane.INFORMATION_MESSAGE);
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -50,5 +51,24 @@ public class EditujKorisnikaFrameUtils {
         List<Integer> all = query.list();
       
         return all;
+    }
+    
+    //dodajEditovanogKorisnika
+     public void SpasiPromjenu (Korisnik k)
+    {
+        Transaction tx = session.beginTransaction();
+        session.update(k);
+        tx.commit();
+        //session.disconnect();
+        //session.close();
+    }
+     
+     //daj tip korisnika!
+    public List<String> getAllTipKorisnika()
+    {
+        Query query = session.createQuery("select kt.naziv from KorisnikTipovi kt");	
+        List<String> allKorisnikTipovi = query.list();
+        
+        return allKorisnikTipovi;
     }
 }
