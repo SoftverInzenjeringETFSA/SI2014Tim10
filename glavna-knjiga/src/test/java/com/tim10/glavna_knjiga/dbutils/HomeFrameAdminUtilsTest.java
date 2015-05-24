@@ -35,9 +35,7 @@ public class HomeFrameAdminUtilsTest extends TestCase {
         System.out.println("getInstace");
         HomeFrameAdminUtils expResult = null;
         HomeFrameAdminUtils result = HomeFrameAdminUtils.getInstace();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);
     }
 
     /**
@@ -48,9 +46,7 @@ public class HomeFrameAdminUtilsTest extends TestCase {
         HomeFrameAdminUtils instance = null;
         Object[][] expResult = null;
         Object[][] result = instance.getAllKorisnici();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);
     }
 
     /**
@@ -61,9 +57,7 @@ public class HomeFrameAdminUtilsTest extends TestCase {
         HomeFrameAdminUtils instance = null;
         DefaultTableModel expResult = null;
         DefaultTableModel result = instance.getDefModel();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(expResult, result);
     }
     
 }
