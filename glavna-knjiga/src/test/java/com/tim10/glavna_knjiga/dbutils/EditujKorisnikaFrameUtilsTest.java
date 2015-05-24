@@ -38,7 +38,7 @@ public class EditujKorisnikaFrameUtilsTest extends TestCase {
             EditujKorisnikaFrameUtils expResult = null;
             EditujKorisnikaFrameUtils result = EditujKorisnikaFrameUtils.getInstace();
             assertEquals(expResult, result);
-        } catch (ExceptionInInitializerError ex) {
+        } catch (NoClassDefFoundError ex) {
         }
     }
 
