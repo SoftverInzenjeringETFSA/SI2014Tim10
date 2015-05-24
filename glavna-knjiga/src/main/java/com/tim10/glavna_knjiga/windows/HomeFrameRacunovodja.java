@@ -40,7 +40,6 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -81,10 +80,6 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Ubuntu", 2, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 84, 0));
         jLabel7.setText("Korisnicko ime:");
-
-        jLabel8.setFont(new java.awt.Font("Ubuntu", 2, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 84, 0));
-        jLabel8.setText("Broj naloga:");
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(2, 130, 229));
@@ -147,8 +142,7 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(135, 135, 135))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,15 +161,13 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel2))
-                .addGap(18, 27, Short.MAX_VALUE)
+                .addGap(18, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8))
-                .addGap(243, 243, 243))
+                .addComponent(jLabel4)
+                .addGap(244, 244, 244))
         );
 
         pack();
@@ -237,7 +229,6 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -252,6 +243,6 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         this.jLabel5.setText(UserData.getKorisnik().getIme());
         this.jLabel6.setText(UserData.getKorisnik().getPrezime());
         this.jLabel7.setText(UserData.getKorisnik().getKorisnickoIme());
-        this.jLabel8.setText(UserData.getKorisnik().getIme());
+        //this.jLabel8.setText(UserData.getKorisnik().getIme());
     }
 }
