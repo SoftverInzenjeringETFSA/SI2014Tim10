@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory name="">
-  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Tim10</property>
-  <property name="hibernate.connection.username">EtfSI2014</property>
-  <property name="show_sql">true</property>
-  <property name="hibernate.connection.password">2014SIEtf</property>
-  <property name="hibernate.connection.isolation">2</property>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/Dokumenti.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/Klijent.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/KontniOkvir.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/KontniPlan.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/Korisnik.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/KorisnikTipovi.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/Nalozi.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/Preduzece.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/StavkeNaloga.hbm.xml"/>
-  <mapping resource="com/tim10/glavna_knjiga/mappings/VrstaDokumenta.hbm.xml"/>
- </session-factory>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Tim10</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="show_sql">true</property>
+    <property name="hibernate.connection.isolation">2</property>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/Dokumenti.hbm.xml"/>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/Klijent.hbm.xml"/>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/KontniOkvir.hbm.xml"/>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/KontniPlan.hbm.xml"/>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/Korisnik.hbm.xml"/>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/KorisnikTipovi.hbm.xml"/>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/Nalozi.hbm.xml"/>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/Preduzece.hbm.xml"/>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/StavkeNaloga.hbm.xml"/>
+    <mapping resource="com/tim10/glavna_knjiga/mappings/VrstaDokumenta.hbm.xml"/>
+  </session-factory>
 </hibernate-configuration>

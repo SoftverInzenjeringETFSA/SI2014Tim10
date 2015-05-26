@@ -46,6 +46,8 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,6 +117,23 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jMenu3.setText("Nalog opcije");
         jMenu3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jMenu3.setMargin(new java.awt.Insets(0, 0, 0, 50));
+
+        jMenuItem3.setText("Kreiraj novi nalog");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setText("Pregled Naloga");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
         jMenuBar1.add(jMenu3);
 
         jMenu2.setForeground(java.awt.Color.white);
@@ -186,6 +205,25 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         kontniOkvirFrameView.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        this.setEnabled(false);
+        
+        Nalog noviNalog = new Nalog(this);
+        noviNalog.setVisible(true);
+        noviNalog.setBigTitle("NOVI NALOG");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        this.setEnabled(false);
+        
+        PregledNaloga nalozi = new PregledNaloga(this);
+        nalozi.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    public void refreshData() {
+    }
+           
+    
     /**
      * @param args the command line arguments
      */
@@ -236,6 +274,8 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 
     

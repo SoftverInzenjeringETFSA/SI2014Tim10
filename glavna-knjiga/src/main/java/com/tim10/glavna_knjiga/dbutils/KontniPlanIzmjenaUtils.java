@@ -80,7 +80,7 @@ public class KontniPlanIzmjenaUtils {
         // ad-hoc, hibernate not workiing... ne radi me hajbernejttt
         
         Class.forName("com.mysql.jdbc.Driver") ;
-        Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/Tim10", "EtfSI2014", "2014SIEtf");
+        Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/Tim10", "root", "root");
         
         int kontniPlanId = UserData.getPreduzece().getKontniPlans().iterator().next().getIdKontniPlan();
         
