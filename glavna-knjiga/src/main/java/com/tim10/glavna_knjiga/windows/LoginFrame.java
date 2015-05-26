@@ -52,7 +52,6 @@ public class LoginFrame extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-                     @Override
 			public void run() {
 				try {
 					LoginFrame frame = new LoginFrame();
@@ -98,8 +97,7 @@ public class LoginFrame extends JFrame {
 
 		cmbTipKorisnika = new JComboBox();
 		cmbTipKorisnika.addActionListener(new ActionListener() {
-                    @Override
-			public void actionPerformed(ActionEvent e) {
+                    public void actionPerformed(ActionEvent e) {
 				if ("Racunovodja".equals(((JComboBox) (e.getSource())).getSelectedItem().toString())) {
 					lblPreduzece.setVisible(true);
 					cmbPreduzece.setVisible(true);
@@ -110,8 +108,7 @@ public class LoginFrame extends JFrame {
 			}
 		});
 		cmbTipKorisnika.addPropertyChangeListener(new PropertyChangeListener() {
-                    @Override
-			public void propertyChange(PropertyChangeEvent evt) {
+                    public void propertyChange(PropertyChangeEvent evt) {
 
 			}
 		});
@@ -173,7 +170,7 @@ public class LoginFrame extends JFrame {
 
 		JButton btnUlogujSe = new JButton("Uloguj se!");
 		btnUlogujSe.addActionListener(new ActionListener() {
-                    @Override
+                    //@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
