@@ -34,6 +34,11 @@ public class StavkeNaloga implements java.io.Serializable {
 
 	public StavkeNaloga() {
 	}
+        
+        public StavkeNaloga(Nalozi nalog) {
+            this.nalozi = nalog;
+            this.datumKreiranja = new Date();
+	}
 
 	public StavkeNaloga(int id, Nalozi nalozi, Klijent klijent,
 			Dokumenti dokumenti, KontniOkvir kontniOkvir) {

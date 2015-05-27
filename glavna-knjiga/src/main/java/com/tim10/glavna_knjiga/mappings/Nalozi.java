@@ -37,10 +37,11 @@ public class Nalozi implements java.io.Serializable {
 	public Nalozi() {
 	}
 
-	public Nalozi(int id, Korisnik korisnik, Preduzece preduzece) {
-		this.id = id;
+	public Nalozi(Korisnik korisnik, Preduzece preduzece, int status) {
 		this.korisnik = korisnik;
 		this.preduzece = preduzece;
+                this.status = status;
+                this.datumKreiranja = new Date();
 	}
 
 	public Nalozi(int id, Korisnik korisnik, Preduzece preduzece, String naziv,
@@ -142,5 +143,8 @@ public class Nalozi implements java.io.Serializable {
 	public void setStavkeNalogas(Set<StavkeNaloga> stavkeNalogas) {
 		this.stavkeNalogas = stavkeNalogas;
 	}
-
+        
+        public void dodajStavku(StavkeNaloga stavka) {
+            this.stavkeNalogas.add(stavka);
+        }
 }

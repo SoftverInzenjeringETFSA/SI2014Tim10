@@ -37,7 +37,9 @@ public class DodajKorisnikaFrameUtilsTest extends TestCase {
             System.out.println("getInstace");
             DodajKorisnikaFrameUtils expResult = null;
             DodajKorisnikaFrameUtils result = DodajKorisnikaFrameUtils.getInstace();
-            assertEquals(expResult, result);
+
+            assertNotSame(expResult, result);
+
         } catch (ExceptionInInitializerError ex) {
         }
     }
