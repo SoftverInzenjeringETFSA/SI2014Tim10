@@ -116,7 +116,7 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(110, 10, 540, 520);
 
-        jMenuBar1.setBackground(new java.awt.Color(51, 204, 255));
+        jMenuBar1.setBackground(new java.awt.Color(51, 153, 255));
         jMenuBar1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
 
         jMenu1.setForeground(java.awt.Color.white);

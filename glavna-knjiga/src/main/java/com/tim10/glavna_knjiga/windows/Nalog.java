@@ -36,13 +36,13 @@ public class Nalog extends javax.swing.JFrame {
      */
     public Nalog() {
         initComponents();
-        
+        getContentPane().setBackground(Color.WHITE);
         _nalog = new Nalozi();
     }
     
     public Nalog(HomeFrameRacunovodja parent) {
         initComponents();
-        
+        getContentPane().setBackground(Color.WHITE);
         _nalog = new Nalozi(UserData.getKorisnik(), UserData.getPreduzece(), 0);
         _parent = parent;
         
@@ -55,7 +55,7 @@ public class Nalog extends javax.swing.JFrame {
     
     public Nalog(PregledNaloga parent, Nalozi nalog) {
         initComponents();
-        
+        getContentPane().setBackground(Color.WHITE);
         _nalog = nalog;
         _parent = parent;
         
@@ -95,21 +95,13 @@ public class Nalog extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnDodajStavku = new javax.swing.JButton();
-        btnSpasiNalog = new javax.swing.JButton();
-        btnObrisiNalog = new javax.swing.JButton();
-        btnUpisiNalog = new javax.swing.JButton();
-        btnObrisiStavku = new javax.swing.JButton();
         txtNazivNaloga = new javax.swing.JTextField();
         txtDatumKreiranja = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        btnUrediStavku = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStavkeNaloga = new javax.swing.JTable();
         btnZatvori = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        lbNaslov = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         txtStatusNaloga = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -123,8 +115,20 @@ public class Nalog extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txtDatumKnjizenja = new javax.swing.JTextField();
         txtSifraNaloga = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        lbNaslov = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btnDodajStavku = new javax.swing.JButton();
+        btnObrisiStavku = new javax.swing.JButton();
+        btnUrediStavku = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        btnSpasiNalog = new javax.swing.JButton();
+        btnUpisiNalog = new javax.swing.JButton();
+        btnObrisiNalog = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -141,68 +145,23 @@ public class Nalog extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("STAVKE NALOGA:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel2.setText("Naziv:");
-
-        btnDodajStavku.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnDodajStavku.setText("Dodaj Stavku");
-        btnDodajStavku.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDodajStavkuActionPerformed(evt);
-            }
-        });
-
-        btnSpasiNalog.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSpasiNalog.setText("Spasi Nalog");
-        btnSpasiNalog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSpasiNalogActionPerformed(evt);
-            }
-        });
-
-        btnObrisiNalog.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnObrisiNalog.setText("Obriši Nalog");
-        btnObrisiNalog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObrisiNalogActionPerformed(evt);
-            }
-        });
-
-        btnUpisiNalog.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnUpisiNalog.setText("Upiši Nalog");
-        btnUpisiNalog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpisiNalogActionPerformed(evt);
-            }
-        });
-
-        btnObrisiStavku.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnObrisiStavku.setText("Obriši Stavku");
-        btnObrisiStavku.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObrisiStavkuActionPerformed(evt);
-            }
-        });
+        jLabel2.setPreferredSize(new java.awt.Dimension(40, 25));
 
         txtNazivNaloga.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtNazivNaloga.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        txtNazivNaloga.setPreferredSize(new java.awt.Dimension(2, 25));
 
         txtDatumKreiranja.setEditable(false);
         txtDatumKreiranja.setBackground(new java.awt.Color(204, 204, 204));
         txtDatumKreiranja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtDatumKreiranja.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         txtDatumKreiranja.setFocusable(false);
+        txtDatumKreiranja.setPreferredSize(new java.awt.Dimension(2, 25));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Datum Knjiženja:");
-
-        btnUrediStavku.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnUrediStavku.setText("Uredi Stavku");
-        btnUrediStavku.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUrediStavkuActionPerformed(evt);
-            }
-        });
 
         tblStavkeNaloga.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -233,8 +192,11 @@ public class Nalog extends javax.swing.JFrame {
         tblStavkeNaloga.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblStavkeNaloga);
 
+        btnZatvori.setBackground(new java.awt.Color(51, 153, 255));
         btnZatvori.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnZatvori.setForeground(new java.awt.Color(255, 255, 255));
         btnZatvori.setText("Zatvori");
+        btnZatvori.setPreferredSize(new java.awt.Dimension(120, 25));
         btnZatvori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZatvoriActionPerformed(evt);
@@ -244,15 +206,12 @@ public class Nalog extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Status:");
 
-        lbNaslov.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbNaslov.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbNaslov.setText("NALOG");
-
         txtStatusNaloga.setEditable(false);
         txtStatusNaloga.setBackground(new java.awt.Color(204, 204, 204));
         txtStatusNaloga.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtStatusNaloga.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         txtStatusNaloga.setFocusable(false);
+        txtStatusNaloga.setPreferredSize(new java.awt.Dimension(2, 25));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("DUGUJE:");
@@ -307,117 +266,248 @@ public class Nalog extends javax.swing.JFrame {
         txtDatumKnjizenja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtDatumKnjizenja.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         txtDatumKnjizenja.setFocusable(false);
+        txtDatumKnjizenja.setPreferredSize(new java.awt.Dimension(2, 25));
 
         txtSifraNaloga.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtSifraNaloga.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        txtSifraNaloga.setPreferredSize(new java.awt.Dimension(2, 25));
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel1.setLayout(null);
+
+        lbNaslov.setBackground(new java.awt.Color(51, 51, 255));
+        lbNaslov.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbNaslov.setForeground(new java.awt.Color(255, 255, 255));
+        lbNaslov.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbNaslov.setText("NALOG");
+        jPanel1.add(lbNaslov);
+        lbNaslov.setBounds(310, 0, 157, 20);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)), "Stavke", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(51, 153, 255))); // NOI18N
+
+        btnDodajStavku.setBackground(new java.awt.Color(51, 153, 255));
+        btnDodajStavku.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnDodajStavku.setForeground(new java.awt.Color(255, 255, 255));
+        btnDodajStavku.setText("Dodaj Stavku");
+        btnDodajStavku.setPreferredSize(new java.awt.Dimension(120, 25));
+        btnDodajStavku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajStavkuActionPerformed(evt);
+            }
+        });
+
+        btnObrisiStavku.setBackground(new java.awt.Color(51, 153, 255));
+        btnObrisiStavku.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnObrisiStavku.setForeground(new java.awt.Color(255, 255, 255));
+        btnObrisiStavku.setText("Obriši Stavku");
+        btnObrisiStavku.setPreferredSize(new java.awt.Dimension(120, 25));
+        btnObrisiStavku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObrisiStavkuActionPerformed(evt);
+            }
+        });
+
+        btnUrediStavku.setBackground(new java.awt.Color(51, 153, 255));
+        btnUrediStavku.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnUrediStavku.setForeground(new java.awt.Color(255, 255, 255));
+        btnUrediStavku.setText("Uredi Stavku");
+        btnUrediStavku.setPreferredSize(new java.awt.Dimension(120, 25));
+        btnUrediStavku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUrediStavkuActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDodajStavku, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnObrisiStavku, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnUrediStavku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnDodajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnObrisiStavku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(btnUrediStavku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)), "Nalog", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(51, 153, 255))); // NOI18N
+
+        btnSpasiNalog.setBackground(new java.awt.Color(51, 153, 255));
+        btnSpasiNalog.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSpasiNalog.setForeground(new java.awt.Color(255, 255, 255));
+        btnSpasiNalog.setText("Spasi Nalog");
+        btnSpasiNalog.setPreferredSize(new java.awt.Dimension(120, 25));
+        btnSpasiNalog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSpasiNalogActionPerformed(evt);
+            }
+        });
+
+        btnUpisiNalog.setBackground(new java.awt.Color(51, 153, 255));
+        btnUpisiNalog.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnUpisiNalog.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpisiNalog.setText("Upiši Nalog");
+        btnUpisiNalog.setPreferredSize(new java.awt.Dimension(120, 25));
+        btnUpisiNalog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpisiNalogActionPerformed(evt);
+            }
+        });
+
+        btnObrisiNalog.setBackground(new java.awt.Color(51, 153, 255));
+        btnObrisiNalog.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnObrisiNalog.setForeground(new java.awt.Color(255, 255, 255));
+        btnObrisiNalog.setText("Obriši Nalog");
+        btnObrisiNalog.setPreferredSize(new java.awt.Dimension(120, 25));
+        btnObrisiNalog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObrisiNalogActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnObrisiNalog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSpasiNalog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUpisiNalog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnSpasiNalog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(btnUpisiNalog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(btnObrisiNalog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(txtDuguje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(txtPotrazuje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11))
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addContainerGap(77, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnZatvori)
+                                .addComponent(jLabel11)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnDodajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnObrisiStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnUrediStavku)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnSpasiNalog)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnUpisiNalog, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnObrisiNalog))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel12))
-                                        .addGap(41, 41, 41)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtNazivNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtSifraNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtStatusNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtDatumKnjizenja, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtDatumKreiranja, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(324, 324, 324)
-                .addComponent(lbNaslov)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(jLabel2))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(11, Short.MAX_VALUE)))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel12))
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNazivNaloga, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(txtSifraNaloga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtStatusNaloga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDatumKreiranja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDatumKnjizenja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(44, 44, 44)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(140, 140, 140))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnZatvori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(145, 145, 145))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbNaslov)
-                .addGap(39, 39, 39)
-                .addComponent(txtNazivNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSifraNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtStatusNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtDatumKreiranja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtDatumKnjizenja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNazivNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSifraNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtStatusNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12)
+                                .addComponent(txtDatumKreiranja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(txtDatumKnjizenja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
@@ -428,29 +518,14 @@ public class Nalog extends javax.swing.JFrame {
                     .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPotrazuje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
+                .addGap(37, 37, 37)
+                .addComponent(btnZatvori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDodajStavku)
-                    .addComponent(btnObrisiStavku)
-                    .addComponent(btnUrediStavku)
-                    .addComponent(btnObrisiNalog)
-                    .addComponent(btnSpasiNalog)
-                    .addComponent(btnUpisiNalog))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnZatvori)
-                .addGap(27, 27, 27))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(49, 49, 49)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jLabel2)
-                    .addContainerGap(552, Short.MAX_VALUE)))
+                .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(58, 58, 58))
         );
 
-        setSize(new java.awt.Dimension(774, 685));
+        setSize(new java.awt.Dimension(816, 685));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -824,6 +899,9 @@ public class Nalog extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbError;
