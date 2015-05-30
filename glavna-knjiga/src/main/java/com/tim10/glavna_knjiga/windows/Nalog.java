@@ -598,7 +598,7 @@ public class Nalog extends javax.swing.JFrame {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(this, "Greška prilikom spašavanja naloga.", "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Greška prilikom spašavanja naloga. " + e.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSpasiNalogActionPerformed
 

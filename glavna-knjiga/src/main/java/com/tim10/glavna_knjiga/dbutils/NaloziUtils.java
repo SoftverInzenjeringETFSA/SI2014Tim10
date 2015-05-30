@@ -39,22 +39,26 @@ public class NaloziUtils {
     }
     
     public void spasiNalog (Nalozi nalog, boolean zatvoriNalog) {
-        Transaction tran = session.beginTransaction();
+        try {
+            Transaction tran = session.beginTransaction();
 
-        if (zatvoriNalog)
-        {
-            nalog.setStatus(2);
-            nalog.setDatumKnjizenja(new Date());
+            if (zatvoriNalog)
+            {
+                nalog.setStatus(2);
+                nalog.setDatumKnjizenja(new Date());
+            }
+            else
+            {
+                nalog.setStatus(1);
+            }
+
+            session.save(nalog);
+            tran.commit();
+        } catch(Exception e) {
+            session.flush();
+        } finally {
+            session.clear();
         }
-        else
-        {
-            nalog.setStatus(1);
-        }
-        
-        session.save(nalog);
-        tran.commit();
-        
-        session.clear();
     }
     
     public void izmijeniNalog (Nalozi nalog, boolean zatvoriNalog) {

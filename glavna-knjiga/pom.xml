@@ -39,10 +39,5 @@
 		<artifactId>mysql-connector-java</artifactId>
 		<version>5.1.6</version>
 	</dependency>
-      <dependency>
-          <groupId>unknown.binary</groupId>
-          <artifactId>swingx-all-1.6.4</artifactId>
-          <version>SNAPSHOT</version>
-      </dependency>
   </dependencies>
 </project>
