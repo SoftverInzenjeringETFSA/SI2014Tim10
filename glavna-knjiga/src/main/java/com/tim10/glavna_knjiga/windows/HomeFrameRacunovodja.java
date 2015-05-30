@@ -48,7 +48,11 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -84,16 +88,18 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jLabel7.setText("Korisnicko ime:");
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(2, 130, 229));
+        jLabel9.setForeground(new java.awt.Color(51, 204, 255));
         jLabel9.setText("Trenutno ste ulogovani kao:");
 
-        jMenuBar1.setBackground(new java.awt.Color(0, 103, 255));
+        jMenuBar1.setBackground(new java.awt.Color(51, 204, 255));
         jMenuBar1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
 
         jMenu1.setForeground(java.awt.Color.white);
         jMenu1.setText("Konto opcije");
-        jMenu1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jMenu1.setToolTipText("");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenu1.setMargin(new java.awt.Insets(0, 0, 0, 50));
+        jMenu1.setPreferredSize(new java.awt.Dimension(200, 25));
 
         jMenuItem1.setText("Kontni plan");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -115,8 +121,9 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
 
         jMenu3.setForeground(java.awt.Color.white);
         jMenu3.setText("Nalog opcije");
-        jMenu3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenu3.setMargin(new java.awt.Insets(0, 0, 0, 50));
+        jMenu3.setPreferredSize(new java.awt.Dimension(200, 25));
 
         jMenuItem3.setText("Kreiraj novi nalog");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -136,10 +143,30 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu4.setText("Izveštaj opcije");
+        jMenu4.setActionCommand("Izveštaj opcije");
+        jMenu4.setContentAreaFilled(false);
+        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jMenu4.setPreferredSize(new java.awt.Dimension(200, 25));
+
+        jMenuItem5.setText("Izvještaj bilansa stanja");
+        jMenuItem5.setToolTipText("");
+        jMenu4.add(jMenuItem5);
+
+        jMenuItem6.setText("Izvještaj bilansa uspjeha");
+        jMenu4.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu4);
+
         jMenu2.setForeground(java.awt.Color.white);
         jMenu2.setText("Help");
         jMenu2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jMenu2.setPreferredSize(new java.awt.Dimension(150, 24));
         jMenuBar1.add(jMenu2);
+
+        jMenu5.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\SI2014Tim10\\glavna-knjiga\\images\\logout.png")); // NOI18N
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -162,7 +189,7 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(135, 135, 135))
+                        .addGap(128, 128, 128))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(229, 229, 229))))
@@ -180,7 +207,7 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel2))
-                .addGap(18, 29, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel7))
@@ -271,11 +298,15 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 
     
