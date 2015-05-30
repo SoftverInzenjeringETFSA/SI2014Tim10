@@ -33,14 +33,16 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -59,37 +61,60 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
+
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         jLabel1.setForeground(java.awt.Color.gray);
         jLabel1.setText("Ime:");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(190, 170, 93, 21);
+
+        jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel9.setText("Trenutno ste ulogovani kao:");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(190, 80, 396, 32);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         jLabel2.setForeground(java.awt.Color.gray);
         jLabel2.setText("Prezime:");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(190, 220, 116, 21);
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         jLabel3.setForeground(java.awt.Color.gray);
         jLabel3.setText("Korisnicko ime:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(190, 280, 191, 21);
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         jLabel4.setForeground(java.awt.Color.gray);
         jLabel4.setText("Broj kreiranih naloga:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(190, 330, 261, 21);
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 2, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 84, 0));
         jLabel5.setText("Ime:");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(520, 160, 180, 24);
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 2, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 84, 0));
         jLabel6.setText("Prezime:");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(520, 220, 179, 24);
 
         jLabel7.setFont(new java.awt.Font("Ubuntu", 2, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 84, 0));
         jLabel7.setText("Korisnicko ime:");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(510, 280, 196, 24);
 
-        jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 204, 255));
-        jLabel9.setText("Trenutno ste ulogovani kao:");
+        jLabel8.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\SI2014Tim10\\glavna-knjiga\\images\\famehof-logo - Copy.png")); // NOI18N
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(110, 10, 540, 520);
 
         jMenuBar1.setBackground(new java.awt.Color(51, 204, 255));
         jMenuBar1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
@@ -144,7 +169,7 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu4.setText("Izveštaj opcije");
+        jMenu4.setText("Izvještaj opcije");
         jMenu4.setActionCommand("Izveštaj opcije");
         jMenu4.setContentAreaFilled(false);
         jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -174,46 +199,11 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(175, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(128, 128, 128))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(229, 229, 229))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jLabel9)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(244, 244, 244))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -294,6 +284,7 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -307,6 +298,7 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     
