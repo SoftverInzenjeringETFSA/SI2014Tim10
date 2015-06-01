@@ -104,6 +104,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        txtDodajFax = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -240,6 +241,9 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
             }
         });
 
+        txtDodajFax.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        txtDodajFax.setPreferredSize(new java.awt.Dimension(120, 25));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -280,7 +284,9 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtDodajJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtDodajFax, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDodajJMBG, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(66, 66, 66)
@@ -318,7 +324,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(jLabel19)
                             .addComponent(jLabel18))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,12 +344,12 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtDodajPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtDodajAdresu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
@@ -356,10 +362,11 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lbDodajPrezimeErrorText)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -372,15 +379,18 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                             .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDodajJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtDodajJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDodajEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15)))
                 .addGap(28, 28, 28)
-                .addComponent(txtDodajTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDodajTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDodajFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
         );
 
@@ -462,38 +472,14 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
     public ValidationUtils v = new ValidationUtils();   
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        //---pokupljene vrijednosti---
-        String a = txtDodajTelefon.getText();
-        String ime = txtDodajIme.getText();
-        String prezime = txtDodajPrezime.getText();
-        String korisnickoIme = txtDodajKorIme.getText();
-        String lozinka = txtDodajLozinku.getText();
-        //Integer jmbg = Integer.parseInt(txtDodajJMBG.getText());
-        String jmbg = txtDodajJMBG.getText().toString();
-        String tipKorisnika = String.valueOf(cmDodajTipKorisnika.getSelectedItem());
-        String adresa = txtDodajAdresu.getText();
-        //Integer telefon = Integer.parseInt(txtDodajTelefon.getText());
-        String telefon = txtDodajTelefon.getText().toString();
-        //Integer fax = Integer.parseInt(txtDodajFax.getText());
-        String fax = jFormattedTextField3.getText().toString();
-        String email = txtDodajEmail.getText();
-        //---pokupljene vrijednosti---
-        
-        //---namjestanje tipa---
-        KorisnikTipovi tip = new KorisnikTipovi();
-        if(tipKorisnika.equals("Racunovodja"))
-            tip.setId(2);
-        else if(tipKorisnika.equals("Administrator"))
-                tip.setId(1);
-                
-        //---namjestanje tipa---
-      
+         
+        Boolean var = true; //pretp da je sve ok
         //---IME---
       if(v.ValidirajIme(txtDodajIme))
       {
           jLabel5.setVisible(true);
           jLabel5.setToolTipText("Morate unijeti ime!");
+          var = false;
       }
       else
       {
@@ -507,6 +493,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
       {
           jLabel12.setVisible(true);
           jLabel12.setToolTipText("Morate unijeti prezime!");
+          var = false;
       }
       else
       {
@@ -520,6 +507,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
       {
        jLabel13.setVisible(true);
        jLabel13.setToolTipText("Morate unijeti korisnicko ime!");
+       var = false;
       }
       else
       {
@@ -533,6 +521,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
       {
          jLabel14.setVisible(true);
          jLabel14.setToolTipText("Morate unijeti sifur");
+         var = false;
       }
       else
       {
@@ -542,16 +531,17 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
       //---LOZINKA---
       
       //---JMBG---
-      if(v.ValidirajJmbg(txtDodajJMBG))
+      /*if(v.ValidirajJmbg(txtDodajJMBG))
       {
         jLabel15.setVisible(true);
         jLabel15.setToolTipText("Morate unijeti ispravan JMBG sa 13 cifri!");
+        var = false;
       }
       else
       {
         jLabel15.setVisible(false);
         jLabel15.setToolTipText("");  
-      }
+      }*/
       //---JMBG---
       
       //---ADRESA---
@@ -559,6 +549,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
       {
         jLabel16.setVisible(true);
         jLabel16.setToolTipText("Morate unijeti adresu!");
+        var = false;
       }
       else
       {
@@ -568,29 +559,31 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
       //---ADRESA---
       
       //---TELEFON---
-      if(v.ValidirajTelefon(jFormattedTextField1))
+     /* if(v.ValidirajTelefon(jFormattedTextField1))
       {
         jLabel17.setVisible(true);
         jLabel17.setToolTipText("Morate unijeti broj telefona!");
+        var = false;
       }
       else
       {
        jLabel17.setVisible(false);
         jLabel17.setToolTipText("");
-      }
+      }*/
       //---TELEFON---
       
       //---FAX---
-      if(v.ValidirajFax(jFormattedTextField3))
+      /*if(v.ValidirajFax(jFormattedTextField3))
       {
         jLabel18.setVisible(true);
         jLabel18.setToolTipText("Morate unijeti broj faxa/telefona!");
+        var = false;
       }
       else
       {
         jLabel18.setVisible(false);
         jLabel18.setToolTipText("");  
-      }
+      }*/
       //---FAX---
       
       //---EMAIL---
@@ -598,6 +591,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
       {
           jLabel19.setVisible(true);
           jLabel9.setToolTipText("Morate unijeti email!");
+          var = false;
       }
       else
       {
@@ -606,39 +600,51 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
           
       }
       //---EMAIL---
-      
-        
-        
-        /*if(ProvjeriJmbg(jmbg) && provjeri())
-        {
-            Korisnik korisnik = new Korisnik();
-            korisnik.setId(utils.getIdNumber() + 1); //ID
-            korisnik.setIme(ime);
-            korisnik.setPrezime(prezime);
-            korisnik.setKorisnickoIme(korisnickoIme);
-            korisnik.setLozinka(lozinka);
-            korisnik.setJmbg(jmbg);
-            korisnik.setKorisnikTipovi(tip);
+      if(var)
+      {
+          //System.out.println(telefon);
+             //---pokupljene vrijednosti---
+          String a = txtDodajTelefon.getText();
+          String ime = txtDodajIme.getText();
+          String prezime = txtDodajPrezime.getText();
+          String korisnickoIme = txtDodajKorIme.getText();
+          String lozinka = txtDodajLozinku.getText();
+          Integer jmbg = Integer.parseInt(txtDodajJMBG.getText());
+          //String jmbg = txtDodajJMBG.getText().toString();
+          String tipKorisnika = String.valueOf(cmDodajTipKorisnika.getSelectedItem());
+          String adresa = txtDodajAdresu.getText();
+          Integer telefon = Integer.parseInt(txtDodajTelefon.getText());
+          //String telefon = jFormattedTextField1.getText().toString();
+          Integer fax = Integer.parseInt(txtDodajFax.getText());
+          //String fax = jFormattedTextField3.getText().toString();
+          String email = txtDodajEmail.getText();
+          //---pokupljene vrijednosti---
+
+          //---namjestanje tipa---
+          KorisnikTipovi tip = new KorisnikTipovi();
+          if(tipKorisnika.equals("Racunovodja"))
+              tip.setId(2);
+          else if(tipKorisnika.equals("Administrator"))
+                  tip.setId(1);
+
+          //---namjestanje tipa---
+          
+          //---DODAVANJE ; OBRISATI KOMENTARE...!!!!!
+          Korisnik korisnik= new Korisnik();
+          korisnik.setId(utils.getIdNumber() + 1); //ID
+          korisnik.setIme(ime);
+          korisnik.setPrezime(prezime);
+          korisnik.setKorisnickoIme(korisnickoIme);
+          korisnik.setLozinka(lozinka);
+          korisnik.setJmbg(jmbg);
+          korisnik.setKorisnikTipovi(tip);
             korisnik.setAdresa(adresa);
             korisnik.setTelefon(telefon);
             korisnik.setFax(fax);
             korisnik.setEmail(email);
             utils.ustekaj(korisnik);
             dispose();
-        }*/
-        
-        
-        /*Korisnik k = new Korisnik();
-        KorisnikTipovi kt = new KorisnikTipovi();
-        kt.setId(1);
-        k.setIme("Mastodont");
-        k.setPrezime("MastodoncinMrtva");
-        k.setId(3);
-        k.setKorisnikTipovi(kt);
-        utils.istekaj(k);*/
-        
-        
-        
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtDodajTelefonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDodajTelefonKeyTyped
@@ -776,6 +782,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lbDodajPrezimeErrorText;
     private javax.swing.JTextField txtDodajAdresu;
     private javax.swing.JTextField txtDodajEmail;
+    private javax.swing.JTextField txtDodajFax;
     private javax.swing.JTextField txtDodajIme;
     private javax.swing.JTextField txtDodajJMBG;
     private javax.swing.JTextField txtDodajKorIme;
