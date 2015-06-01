@@ -966,7 +966,7 @@ CREATE TABLE IF NOT EXISTS `Korisnik` (
   `KorisnickoIme` varchar(12) DEFAULT NULL,
   `Lozinka` varchar(10) DEFAULT NULL,
   `Adresa` varchar(45) DEFAULT NULL,
-  `JMBG` int(11) DEFAULT NULL,
+  `JMBG` int(13) NOT NULL,
   `Telefon` int(11) DEFAULT NULL,
   `Fax` int(11) DEFAULT NULL,
   `Email` varchar(45) DEFAULT NULL,
