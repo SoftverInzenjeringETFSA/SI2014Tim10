@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -29,8 +30,8 @@ public class Nalog extends javax.swing.JFrame {
     private JFrame _parent;
     private NaloziUtils _utils = NaloziUtils.getInstace();
     private Nalozi _nalog;
-    private List<StavkeNaloga> _noveStavke = new ArrayList<StavkeNaloga>();
-    private List<Integer> _obrisaneStavkeIDs = new ArrayList<Integer>();
+    private List<StavkeNaloga> _stavkeNaloga = new ArrayList<StavkeNaloga>();
+    private List<StavkeNaloga> _obrisaneStavke = new ArrayList<StavkeNaloga>();
     /**
      * Creates new form Nalog
      */
@@ -45,6 +46,7 @@ public class Nalog extends javax.swing.JFrame {
         getContentPane().setBackground(Color.WHITE);
         _nalog = new Nalozi(UserData.getKorisnik(), UserData.getPreduzece(), 0);
         _parent = parent;
+        _stavkeNaloga.addAll(_nalog.getStavkeNalogas());
         
         recalculateFields();
         this.txtStatusNaloga.setText("NOVI");
@@ -58,8 +60,7 @@ public class Nalog extends javax.swing.JFrame {
         getContentPane().setBackground(Color.WHITE);
         _nalog = nalog;
         _parent = parent;
-        
-        recalculateFields();
+        _stavkeNaloga.addAll(_nalog.getStavkeNalogas());
         
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         this.txtNazivNaloga.setText(_nalog.getNaziv());
@@ -80,6 +81,10 @@ public class Nalog extends javax.swing.JFrame {
             
             disableForm();
         }
+        
+        updateTable();
+        
+        recalculateFields();
     }
 
     /**
@@ -189,6 +194,7 @@ public class Nalog extends javax.swing.JFrame {
         tblStavkeNaloga.setFocusable(false);
         TableColumn idCol = tblStavkeNaloga.getColumnModel().getColumn(6);
         tblStavkeNaloga.getColumnModel().removeColumn(idCol);
+        tblStavkeNaloga.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tblStavkeNaloga.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblStavkeNaloga);
 
@@ -411,65 +417,62 @@ public class Nalog extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDuguje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPotrazuje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDuguje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPotrazuje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel1)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel12))
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNazivNaloga, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(txtSifraNaloga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtStatusNaloga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtDatumKreiranja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtDatumKnjizenja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(44, 44, 44)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(140, 140, 140))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnZatvori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(145, 145, 145))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel12))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNazivNaloga, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(txtSifraNaloga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtStatusNaloga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDatumKreiranja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDatumKnjizenja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(44, 44, 44)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnZatvori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(145, 145, 145))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -518,11 +521,11 @@ public class Nalog extends javax.swing.JFrame {
                     .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPotrazuje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(37, 37, 37)
-                .addComponent(btnZatvori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(58, 58, 58))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnZatvori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(816, 685));
@@ -544,10 +547,10 @@ public class Nalog extends javax.swing.JFrame {
     private void btnDodajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajStavkuActionPerformed
         
         clearError();
+        
+        _stavkeNaloga.add(new StavkeNaloga(_nalog));
 
-        _noveStavke.add(new StavkeNaloga(_nalog));
-
-        Stavka novaStavka = new Stavka(this, _noveStavke.get(_noveStavke.size() - 1));
+        Stavka novaStavka = new Stavka(this, _stavkeNaloga.get(_stavkeNaloga.size() - 1), false);
         
         this.setEnabled(false);
         novaStavka.setVisible(true);
@@ -567,10 +570,11 @@ public class Nalog extends javax.swing.JFrame {
             
             if (stavkaId != -1)
             {
-                _obrisaneStavkeIDs.add(stavkaId);
+                _obrisaneStavke.add(_stavkeNaloga.get(selectedRow));
             }
             
             model.removeRow(this.tblStavkeNaloga.getSelectedRow());
+            _stavkeNaloga.remove(selectedRow);
             
             recalculateFields();
         }
@@ -593,37 +597,12 @@ public class Nalog extends javax.swing.JFrame {
         
         if (selectedRow != -1)
         {
-            StavkeNaloga stavka = new StavkeNaloga();
-            int stavkaId = (Integer)model.getValueAt(selectedRow, 6);
+            StavkeNaloga stavka = _stavkeNaloga.get(selectedRow);
             
-            if (stavkaId != -1)
-            {
-                for(StavkeNaloga st: _nalog.getStavkeNalogas())
-                {
-                    if(st.getId() == stavkaId)
-                    {
-                        stavka = st;
-                        
-                        break;
-                    }
-                }
-                
-                if (stavka.getId() > 0)
-                {
-                    Stavka editStavka = new Stavka(this, stavka, model.getValueAt(selectedRow, 2).toString(), model.getValueAt(selectedRow, 0).toString());
-
-                    this.setEnabled(false);
-                    editStavka.setVisible(true);
-                }
-            }
-            else 
-            {
-                Stavka editStavka = new Stavka(this, model.getValueAt(selectedRow, 1).toString(), model.getValueAt(selectedRow, 2).toString(), 
-                        model.getValueAt(selectedRow, 0).toString(), model.getValueAt(selectedRow, 4).toString(), model.getValueAt(selectedRow, 5).toString());
-      
-                this.setEnabled(false);
-                editStavka.setVisible(true);
-            }
+            Stavka editStavka = new Stavka(this, stavka, true);
+            
+            this.setEnabled(false);
+            editStavka.setVisible(true);
         }
         else
         {
@@ -653,6 +632,7 @@ public class Nalog extends javax.swing.JFrame {
                 _nalog.setSifraNaloga(this.txtSifraNaloga.getText());
 
                 _utils.spasiNalog(_nalog, false);
+                _utils.spasiStavkeNaloga(_stavkeNaloga, _nalog);
 
                 JOptionPane.showMessageDialog(this, String.format("Nalog sa šifrom: %s uspješno spašen.", _nalog.getSifraNaloga()), null, JOptionPane.INFORMATION_MESSAGE);
                 
@@ -669,6 +649,12 @@ public class Nalog extends javax.swing.JFrame {
                 
                 _nalog.setNaziv(this.txtNazivNaloga.getText());
                 _utils.izmijeniNalog(_nalog, false);
+                _utils.spasiStavkeNaloga(_stavkeNaloga, _nalog);
+                _utils.obrisiStavkeNaloga(_obrisaneStavke);
+                
+                JOptionPane.showMessageDialog(this, String.format("Nalog sa šifrom: %s uspješno spašen.", _nalog.getSifraNaloga()), null, JOptionPane.INFORMATION_MESSAGE);
+                
+                this.dispose();
             }
         }
         catch(Exception e)
@@ -714,6 +700,7 @@ public class Nalog extends javax.swing.JFrame {
                 _nalog.setSifraNaloga(this.txtSifraNaloga.getText());
 
                 _utils.spasiNalog(_nalog, true);
+                _utils.spasiStavkeNaloga(_stavkeNaloga, _nalog);
 
                 JOptionPane.showMessageDialog(this, String.format("Nalog sa šifrom: %s uspješno zaključen.", _nalog.getSifraNaloga()), null, JOptionPane.INFORMATION_MESSAGE);
                 
@@ -726,6 +713,12 @@ public class Nalog extends javax.swing.JFrame {
                 
                 _nalog.setNaziv(this.txtNazivNaloga.getText());
                 _utils.izmijeniNalog(_nalog, true);
+                _utils.spasiStavkeNaloga(_stavkeNaloga, _nalog);
+                _utils.obrisiStavkeNaloga(_obrisaneStavke);
+                
+                JOptionPane.showMessageDialog(this, String.format("Nalog sa šifrom: %s uspješno zaključen.", _nalog.getSifraNaloga()), null, JOptionPane.INFORMATION_MESSAGE);
+                
+                this.dispose();
             }
         }
         catch(Exception e)
@@ -844,6 +837,28 @@ public class Nalog extends javax.swing.JFrame {
     
     public int getSelectedRow() {
         return this.tblStavkeNaloga.getSelectedRow();
+    }
+    
+    public void updateTable() {
+        DefaultTableModel model = ((DefaultTableModel) this.tblStavkeNaloga.getModel());
+        
+        model.setRowCount(0);
+        Object[] dataRow;
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        
+        for(StavkeNaloga stavka: _nalog.getStavkeNalogas())
+        {
+            dataRow = new Object[]{
+                stavka.getKontniOkvir().getBrojKonta(),
+                stavka.getNaziv(),
+                stavka.getDokumenti().getNaziv(),
+                dateFormat.format(stavka.getDatumKreiranja()),
+                stavka.getDuguje(),
+                stavka.getPotrazuje(),
+                stavka.getId()};
+            
+            model.addRow(dataRow);
+        }    
     }
     // </editor-fold>
 

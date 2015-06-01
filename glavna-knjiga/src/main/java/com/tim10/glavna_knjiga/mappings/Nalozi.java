@@ -4,6 +4,7 @@ package com.tim10.glavna_knjiga.mappings;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -144,7 +145,36 @@ public class Nalozi implements java.io.Serializable {
 		this.stavkeNalogas = stavkeNalogas;
 	}
         
-        public void dodajStavku(StavkeNaloga stavka) {
+        public void addStavka(StavkeNaloga stavka) {
             this.stavkeNalogas.add(stavka);
+        }
+        
+        public void deleteStavka(StavkeNaloga stavka) {
+            this.stavkeNalogas.remove(stavka);
+        }
+        
+        public void setStavka(StavkeNaloga stavka) {
+//            for (Iterator<StavkeNaloga> i = this.stavkeNalogas.iterator(); i.hasNext();) 
+//            {
+//                StavkeNaloga nextStavka = i.next();
+//                    
+//            }
+        }
+        
+        public StavkeNaloga getStavka(int index) {
+            
+            int i = 0;
+            
+            for (Iterator<StavkeNaloga> it = this.stavkeNalogas.iterator(); it.hasNext();) 
+            {
+                if (i == index)
+                {
+                    return it.next();
+                }
+                
+                i++;
+            }
+            
+            return null;
         }
 }

@@ -5,10 +5,16 @@
  */
 package com.tim10.glavna_knjiga.windows;
 
+import com.tim10.glavna_knjiga.dbutils.NaloziUtils;
+import com.tim10.glavna_knjiga.mappings.Dokumenti;
+import com.tim10.glavna_knjiga.mappings.Klijent;
+import com.tim10.glavna_knjiga.mappings.KontniOkvir;
 import com.tim10.glavna_knjiga.mappings.StavkeNaloga;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -18,6 +24,7 @@ public class Stavka extends javax.swing.JFrame {
 
     private Nalog _parent;
     private StavkeNaloga _stavka;
+    private NaloziUtils _utils = NaloziUtils.getInstace();
     
     /**
      * Creates new form Stavka
@@ -26,45 +33,28 @@ public class Stavka extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Stavka(Nalog parent, StavkeNaloga novaStavka) {
+    public Stavka(Nalog parent, StavkeNaloga novaStavka, boolean isEdit) {
         initComponents();
         
         _parent = parent;
         _stavka = novaStavka;
         
-        this.txtSifraNaloga.setText(_stavka.getNalozi().getSifraNaloga());
-        this.btnSpasiIzmjene.setEnabled(false);
-    }
-    
-    public Stavka(Nalog parent, String naziv, String dokument, String konto, String duguje, String potrazuje) {
-        initComponents();
-        
-        _parent = parent;
-        
-        this.txtSifraNaloga.setText(_parent.getSifraNaloga());
-        this.txtNaziv.setText(naziv);
-        this.txtDokument.setText(dokument);
-        this.txtSifraKonta.setText(konto);
-        this.txtDuguje.setText(duguje);
-        this.txtPotrazuje.setText(potrazuje);
-
-        this.btnDodajStavku.setEnabled(false);
-    }
-    
-    public Stavka(Nalog parent, StavkeNaloga stavka, String dokument, String konto) {
-        initComponents();
-        
-        _parent = parent;
-        _stavka = stavka;
-        
-        this.txtSifraNaloga.setText(_parent.getSifraNaloga());
-        this.txtNaziv.setText(_stavka.getNaziv());
-        this.txtDokument.setText(dokument);
-        this.txtSifraKonta.setText(konto);
-        this.txtDuguje.setValue(_stavka.getDuguje());
-        this.txtPotrazuje.setValue(_stavka.getPotrazuje());
-
-        this.btnDodajStavku.setEnabled(false);
+        if (!isEdit)
+        {
+            this.txtSifraNaloga.setText(_parent.getSifraNaloga());
+            this.btnSpasiIzmjene.setEnabled(false);
+        }
+        else
+        {
+            this.txtSifraNaloga.setText(_parent.getSifraNaloga());
+            this.txtNaziv.setText(_stavka.getNaziv());
+            this.txtDokument.setText(_stavka.getDokumenti().getNaziv());
+            this.txtSifraKonta.setText(_stavka.getKontniOkvir().getBrojKonta());
+            this.txtDuguje.setValue(_stavka.getDuguje());
+            this.txtPotrazuje.setValue(_stavka.getPotrazuje());
+            
+            this.btnDodajStavku.setEnabled(false);
+        }
     }
 
     /**
@@ -104,6 +94,8 @@ public class Stavka extends javax.swing.JFrame {
         lbErrorMsg = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtSifraKlijenta = new javax.swing.JTextField();
+        btnOdaberiDokument = new javax.swing.JButton();
+        btnOdaberiKlijenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -133,6 +125,7 @@ public class Stavka extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Dokument:");
 
+        txtDokument.setEditable(false);
         txtDokument.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtDokument.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
@@ -215,38 +208,31 @@ public class Stavka extends javax.swing.JFrame {
         lbErrorMsg.setForeground(new java.awt.Color(255, 51, 51));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("Šifra Klijenta:");
+        jLabel13.setText("Naziv Klijenta:");
         jLabel13.setToolTipText("");
 
+        txtSifraKlijenta.setEditable(false);
         txtSifraKlijenta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtSifraKlijenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+
+        btnOdaberiDokument.setText("Odaberi");
+        btnOdaberiDokument.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOdaberiDokumentActionPerformed(evt);
+            }
+        });
+
+        btnOdaberiKlijenta.setText("Odaberi");
+        btnOdaberiKlijenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOdaberiKlijentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel13)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDokument, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSifraNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtSifraKlijenta, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtSifraKonta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -295,6 +281,32 @@ public class Stavka extends javax.swing.JFrame {
                                                 .addComponent(btnZatvori)))))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(23, 23, 23))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtDokument, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnOdaberiDokument))
+                    .addComponent(txtSifraNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSifraKonta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtSifraKlijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnOdaberiKlijenta)))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,28 +316,28 @@ public class Stavka extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtSifraNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtDokument, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtSifraKonta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtSifraKlijenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13)))
-                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtSifraNaloga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtDokument, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOdaberiDokument))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtSifraKonta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSifraKlijenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(btnOdaberiKlijenta))
+                .addGap(14, 14, 14)
                 .addComponent(lbErrorMsg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,7 +361,7 @@ public class Stavka extends javax.swing.JFrame {
                     .addComponent(btnDodajStavku)
                     .addComponent(btnZatvori)
                     .addComponent(btnSpasiIzmjene))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(629, 489));
@@ -378,6 +390,13 @@ public class Stavka extends javax.swing.JFrame {
             return;
         }
         
+        if (!dodajKonto())
+            return;
+        
+        _stavka.setNaziv(this.txtNaziv.getText());
+        _stavka.setDuguje(new BigDecimal(this.txtDuguje.getValue().toString()));
+        _stavka.setPotrazuje(new BigDecimal(this.txtPotrazuje.getValue().toString()));
+
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date currentDate = new Date();
         
@@ -405,28 +424,43 @@ public class Stavka extends javax.swing.JFrame {
             return;
         }
         
-        if (_stavka != null)
-        {
-            // implement
-        }
-        else
-        {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date currentDate = new Date();
-            
-            Object[] dataRow = new Object[]{this.txtSifraKonta.getText(),
-                                        this.txtNaziv.getText(),
-                                        this.txtDokument.getText(),
-                                        dateFormat.format(currentDate),
-                                        this.txtDuguje.getText(),
-                                        this.txtPotrazuje.getText()
-            };
-            
-            _parent.updateDataRow(dataRow);
-        }
+        if (!dodajKonto())
+            return;
+        
+        _stavka.setNaziv(this.txtNaziv.getText());
+        _stavka.setDuguje(new BigDecimal(this.txtDuguje.getValue().toString()));
+        _stavka.setPotrazuje(new BigDecimal(this.txtPotrazuje.getValue().toString()));
+        
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date currentDate = new Date();
+
+        Object[] dataRow = new Object[]{this.txtSifraKonta.getText(),
+                                    this.txtNaziv.getText(),
+                                    this.txtDokument.getText(),
+                                    dateFormat.format(currentDate),
+                                    this.txtDuguje.getText(),
+                                    this.txtPotrazuje.getText()
+        };
+
+        _parent.updateDataRow(dataRow);
+
         
         this.dispose();
     }//GEN-LAST:event_btnSpasiIzmjeneActionPerformed
+
+    private void btnOdaberiDokumentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdaberiDokumentActionPerformed
+        this.setEnabled(false);
+        
+        OdabirDokumenta odabirDokumenta = new OdabirDokumenta(this);
+        odabirDokumenta.setVisible(true);
+    }//GEN-LAST:event_btnOdaberiDokumentActionPerformed
+
+    private void btnOdaberiKlijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdaberiKlijentaActionPerformed
+        this.setEnabled(false);
+        
+        OdabirKlijenata odabirKlijenta = new OdabirKlijenata(this);
+        odabirKlijenta.setVisible(true);
+    }//GEN-LAST:event_btnOdaberiKlijentaActionPerformed
 
     public void setErrorMsg(String msg) {
         this.lbErrorMsg.setText(msg);
@@ -434,6 +468,54 @@ public class Stavka extends javax.swing.JFrame {
     
     public void clearErrorMsg() {
         this.lbErrorMsg.setText("");
+    }
+    
+    public void setDokument(Dokumenti dokument) {
+        _stavka.setDokumenti(dokument);
+        
+        this.txtDokument.setText(dokument.getNaziv());
+    }
+    
+    public void setKlijent(Klijent klijent) {
+        _stavka.setKlijent(klijent);
+        
+        this.txtSifraKlijenta.setText(klijent.getNaziv());
+    }
+    
+    public KontniOkvir getKonto(String konto){
+        List<KontniOkvir> list = _utils.getKontoIzOkvira(konto);
+        
+        if (list.size() > 0)
+        {
+            return list.get(0);
+        }
+        else
+        {
+            setErrorMsg("Konto sa unešenom šifrom ne postoji.");
+            
+            return null;
+        }
+    }
+    
+    public boolean dodajKonto(){
+        
+        boolean kontoUspjesnoDodan = false;
+        KontniOkvir konto = getKonto(this.txtSifraKonta.getText());
+        
+        if (konto != null)
+        {
+            if (_utils.provjeriKontoUKontnomPlanu(konto.getId()))
+            {
+                _stavka.setKontniOkvir(konto);
+                kontoUspjesnoDodan = true;
+            }
+            else
+            {
+                setErrorMsg("Odabrani konto nije u kontnom planu preduzeća.");
+            };
+        }
+        
+        return kontoUspjesnoDodan;
     }
     /**
      * @param args the command line arguments
@@ -472,6 +554,8 @@ public class Stavka extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodajStavku;
+    private javax.swing.JButton btnOdaberiDokument;
+    private javax.swing.JButton btnOdaberiKlijenta;
     private javax.swing.JButton btnSpasiIzmjene;
     private javax.swing.JButton btnZatvori;
     private javax.swing.JLabel jLabel1;
