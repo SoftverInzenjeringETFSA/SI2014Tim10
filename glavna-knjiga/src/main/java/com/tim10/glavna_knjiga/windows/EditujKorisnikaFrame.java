@@ -311,7 +311,15 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
         txtEditujPrezime.setText(editKorisnik.getPrezime().toString());
         txtEditujKorIme.setText(editKorisnik.getKorisnickoIme().toString());
         txtEditujLozinku.setText(editKorisnik.getLozinka().toString());
-        txtEditujJMBG.setText(editKorisnik.getJmbg().toString());
+         String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+      String email1 = editKorisnik.getJmbg().toString();
+      Boolean b = email1.matches(EMAIL_REGEX);
+      if (b){
+        txtEditujJMBG.setText( email1);
+      }
+      else {
+      
+      }
         cmEditujTipKorisnika.setSelectedItem(editKorisnik.getKorisnikTipovi());
         txtEditujAdresu.setText(editKorisnik.getAdresa());
         txtEditujTelefon.setText(editKorisnik.getTelefon().toString());

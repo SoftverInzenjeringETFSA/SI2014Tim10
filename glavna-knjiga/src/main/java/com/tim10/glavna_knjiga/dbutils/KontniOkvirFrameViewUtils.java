@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import com.tim10.glavna_knjiga.hibernate.HibernateSessionManager;
 import com.tim10.glavna_knjiga.mappings.KontniOkvir;
 
-public class KontniOkvirFrameViewUtils {
+    public class KontniOkvirFrameViewUtils {
 	private static KontniOkvirFrameViewUtils instance = null;
 	
 	private static Session session = HibernateSessionManager.getSessionFactory().openSession();
