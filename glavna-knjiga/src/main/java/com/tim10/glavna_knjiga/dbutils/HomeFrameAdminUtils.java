@@ -59,6 +59,7 @@ public class HomeFrameAdminUtils {
         System.out.println(allKorisnici.size());
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"Ime", "Prezime", "Korisničko ime", "JMBG", "Adresa", "Telefon", "Tip korisnika"});
+        //System.out.println(allKorisnici.get(0).getIme());
         for (Korisnik k : allKorisnici)
         {
             model.addRow(new Object[]{k.getIme().toString(), k.getPrezime().toString(), k.getKorisnickoIme().toString(),
@@ -88,5 +89,6 @@ public class HomeFrameAdminUtils {
         Transaction tx = session.beginTransaction();
         session.delete(k);
         tx.commit();
+        //session.close();
     }
 }

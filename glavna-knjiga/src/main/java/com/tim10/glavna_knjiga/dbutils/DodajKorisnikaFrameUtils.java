@@ -57,7 +57,7 @@ public class DodajKorisnikaFrameUtils {
         Transaction tx = session.beginTransaction();
         session.save(k);
         tx.commit();
-        //session.disconnect();
+        session.disconnect();
         //session.close();
     }
     

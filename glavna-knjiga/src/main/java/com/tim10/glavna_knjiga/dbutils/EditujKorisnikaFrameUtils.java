@@ -60,7 +60,7 @@ public class EditujKorisnikaFrameUtils {
         Transaction tx = session.beginTransaction();
         session.update(k);
         tx.commit();
-        //session.disconnect();
+        session.disconnect();
         //session.close();
     }
      

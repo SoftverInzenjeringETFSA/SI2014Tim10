@@ -268,6 +268,7 @@ public class EditujKorisnikaFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\images\\save-kor.png")); // NOI18N
         jButton1.setToolTipText("Snimi promjene podataka");
         jButton1.setPreferredSize(new java.awt.Dimension(43, 43));
         jButton1.addActionListener(new java.awt.event.ActionListener() {

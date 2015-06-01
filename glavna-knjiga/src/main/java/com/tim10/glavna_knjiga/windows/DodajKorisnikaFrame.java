@@ -5,15 +5,21 @@
  */
 package com.tim10.glavna_knjiga.windows;
 
+import com.sun.glass.events.KeyEvent;
 import com.tim10.glavna_knjiga.dbutils.DodajKorisnikaFrameUtils;
 import com.tim10.glavna_knjiga.mappings.Korisnik;
 import com.tim10.glavna_knjiga.mappings.KorisnikTipovi;
+import com.tim10.glavna_knjiga.validationutils.ValidationUtils;
 import java.awt.Color;
 import java.util.List;
 import static javassist.CtMethod.ConstParameter.string;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.InputVerifier;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -28,10 +34,31 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
      */
     private DodajKorisnikaFrameUtils utils = DodajKorisnikaFrameUtils.getInstace();
     private ImageIcon icon = new ImageIcon("images/save-kor.png");
+    private MaskFormatter mf = new MaskFormatter();
     public DodajKorisnikaFrame() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         cmDodajTipKorisnika.setModel(new DefaultComboBoxModel(utils.getAllTipKorisnika().toArray()));
+        jLabel5.setVisible(false);
+        jLabel12.setVisible(false);
+        jLabel13.setVisible(false);
+        jLabel14.setVisible(false);
+        jLabel15.setVisible(false);
+        jLabel16.setVisible(false);
+        jLabel17.setVisible(false);
+        jLabel18.setVisible(false);
+        jLabel19.setVisible(false);
+        try
+        {
+            mf = new MaskFormatter("+###-##-###-###");
+            
+        }
+        catch(Exception e)
+        {
+            
+        }
+        //mf.setPlaceholderCharacter('_');
+        //jFormattedTextField1 = new JFormattedTextField(mf);
         
     }
 
@@ -45,26 +72,38 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtDodajKorIme = new javax.swing.JTextField();
         txtDodajIme = new javax.swing.JTextField();
         txtDodajJMBG = new javax.swing.JTextField();
         txtDodajPrezime = new javax.swing.JTextField();
         txtDodajLozinku = new javax.swing.JPasswordField();
+        lbDodajImeErrorText = new javax.swing.JLabel();
+        lbDodajPrezimeErrorText = new javax.swing.JLabel();
         cmDodajTipKorisnika = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtDodajAdresu = new javax.swing.JTextField();
+        txtDodajTelefon = new javax.swing.JTextField();
+        txtDodajEmail = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtDodajAdresu = new javax.swing.JTextField();
-        txtDodajEmail = new javax.swing.JTextField();
-        txtDodajTelefon = new javax.swing.JTextField();
-        txtDodajFax = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -76,12 +115,6 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 153, 255), 1, true), "Podaci o novom korisniku", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(51, 153, 255))); // NOI18N
 
-        jLabel1.setText("Ime : ");
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 25));
-
-        jLabel2.setText("Prezime : ");
-        jLabel2.setPreferredSize(new java.awt.Dimension(100, 25));
-
         jLabel3.setText("Korisničko ime :");
         jLabel3.setPreferredSize(new java.awt.Dimension(100, 25));
 
@@ -90,9 +123,6 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
 
         jLabel6.setText("JMBG : ");
         jLabel6.setPreferredSize(new java.awt.Dimension(100, 25));
-
-        jLabel7.setText("Tip korisnika : ");
-        jLabel7.setPreferredSize(new java.awt.Dimension(100, 25));
 
         txtDodajKorIme.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajKorIme.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -107,16 +137,51 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
 
         txtDodajJMBG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajJMBG.setPreferredSize(new java.awt.Dimension(150, 25));
+        txtDodajJMBG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDodajJMBGKeyTyped(evt);
+            }
+        });
 
         txtDodajPrezime.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajPrezime.setPreferredSize(new java.awt.Dimension(150, 25));
+        txtDodajPrezime.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDodajPrezimeKeyTyped(evt);
+            }
+        });
 
         txtDodajLozinku.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         txtDodajLozinku.setPreferredSize(new java.awt.Dimension(100, 25));
 
+        lbDodajImeErrorText.setBackground(new java.awt.Color(255, 102, 102));
+
         cmDodajTipKorisnika.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmDodajTipKorisnika.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         cmDodajTipKorisnika.setPreferredSize(new java.awt.Dimension(150, 25));
+
+        jLabel1.setText("Ime : ");
+        jLabel1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        jLabel7.setText("Tip korisnika : ");
+        jLabel7.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        txtDodajAdresu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        txtDodajAdresu.setPreferredSize(new java.awt.Dimension(150, 25));
+
+        txtDodajTelefon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        txtDodajTelefon.setPreferredSize(new java.awt.Dimension(150, 25));
+        txtDodajTelefon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDodajTelefonKeyTyped(evt);
+            }
+        });
+
+        txtDodajEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        txtDodajEmail.setPreferredSize(new java.awt.Dimension(150, 25));
+
+        jLabel2.setText("Prezime : ");
+        jLabel2.setPreferredSize(new java.awt.Dimension(100, 25));
 
         jLabel8.setText("Adresa stanovanja :");
         jLabel8.setPreferredSize(new java.awt.Dimension(100, 25));
@@ -130,25 +195,48 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         jLabel11.setText("Email : ");
         jLabel11.setPreferredSize(new java.awt.Dimension(100, 25));
 
-        txtDodajAdresu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        txtDodajAdresu.setPreferredSize(new java.awt.Dimension(150, 25));
+        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\images\\error.png")); // NOI18N
 
-        txtDodajEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        txtDodajEmail.setPreferredSize(new java.awt.Dimension(150, 25));
+        jLabel12.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\images\\error.png")); // NOI18N
 
-        txtDodajTelefon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        txtDodajTelefon.setPreferredSize(new java.awt.Dimension(150, 25));
-        txtDodajTelefon.addKeyListener(new java.awt.event.KeyAdapter() {
+        jLabel13.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\images\\error.png")); // NOI18N
+
+        jLabel14.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\images\\error.png")); // NOI18N
+        jLabel14.setToolTipText("");
+
+        jLabel15.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\images\\error.png")); // NOI18N
+
+        jLabel16.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\src\\main\\java\\com\\tim10\\glavna_knjiga\\windows\\error.png")); // NOI18N
+
+        jLabel17.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\src\\main\\java\\com\\tim10\\glavna_knjiga\\windows\\error.png")); // NOI18N
+
+        jLabel18.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\src\\main\\java\\com\\tim10\\glavna_knjiga\\windows\\error.png")); // NOI18N
+
+        jLabel19.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\src\\main\\java\\com\\tim10\\glavna_knjiga\\windows\\error.png")); // NOI18N
+
+        jFormattedTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("+###-##-###-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField1.setPreferredSize(new java.awt.Dimension(109, 25));
+        jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDodajTelefonKeyTyped(evt);
+                jFormattedTextField1KeyTyped(evt);
             }
         });
 
-        txtDodajFax.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        txtDodajFax.setPreferredSize(new java.awt.Dimension(150, 25));
-        txtDodajFax.addKeyListener(new java.awt.event.KeyAdapter() {
+        jFormattedTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        try {
+            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("+###-##-###-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField3.setPreferredSize(new java.awt.Dimension(109, 25));
+        jFormattedTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDodajFaxKeyTyped(evt);
+                jFormattedTextField3KeyTyped(evt);
             }
         });
 
@@ -158,71 +246,145 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtDodajKorIme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDodajJMBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDodajIme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDodajPrezime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDodajLozinku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(99, 99, 99)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(lbDodajPrezimeErrorText))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(lbDodajImeErrorText, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txtDodajIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txtDodajPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtDodajKorIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtDodajLozinku, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtDodajJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(66, 66, 66)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDodajEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajAdresu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmDodajTipKorisnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(jLabel17))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(cmDodajTipKorisnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(txtDodajAdresu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtDodajEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDodajTelefon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel18))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmDodajTipKorisnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDodajIme, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbDodajImeErrorText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtDodajPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtDodajAdresu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtDodajKorIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbDodajPrezimeErrorText)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDodajLozinku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmDodajTipKorisnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajAdresu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajKorIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajLozinku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDodajJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDodajEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                    .addComponent(txtDodajEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(txtDodajTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\glavna-knjiga\\images\\save-kor.png")); // NOI18N
         jButton1.setToolTipText("Spasi podatke o korisniku");
         jButton1.setPreferredSize(new java.awt.Dimension(35, 35));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -236,20 +398,22 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(716, 716, 716)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 35, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -261,6 +425,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         if(korisnici.size() == 0)
         {
             return true;
+           
         }
         else
         {
@@ -269,6 +434,9 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         }
             
     }
+    
+    
+    
     private Boolean provjeri()
     {
         Boolean a = true;
@@ -284,31 +452,31 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         {a = false;}
         if(txtDodajAdresu.getText().length() == 0)
         {a = false;}
-        if(txtDodajFax.getText().length() == 0)
+        if(jFormattedTextField3.getText().length() == 0)
         {a = false;}
         if(txtDodajEmail.getText().length() == 0)
         {a = false;}
         
         return a ;
     }
-    
+    public ValidationUtils v = new ValidationUtils();   
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String a = txtDodajTelefon.getText();
-        if(a.length() != 9)
-        {
-            JOptionPane.showMessageDialog(null, "Neispravan format telefona", "naslov", JOptionPane.INFORMATION_MESSAGE);
-        }
+        
         //---pokupljene vrijednosti---
+        String a = txtDodajTelefon.getText();
         String ime = txtDodajIme.getText();
         String prezime = txtDodajPrezime.getText();
         String korisnickoIme = txtDodajKorIme.getText();
         String lozinka = txtDodajLozinku.getText();
-        Integer jmbg = Integer.parseInt(txtDodajJMBG.getText());
+        //Integer jmbg = Integer.parseInt(txtDodajJMBG.getText());
+        String jmbg = txtDodajJMBG.getText().toString();
         String tipKorisnika = String.valueOf(cmDodajTipKorisnika.getSelectedItem());
         String adresa = txtDodajAdresu.getText();
-        Integer telefon = Integer.parseInt(txtDodajTelefon.getText());
-        Integer fax = Integer.parseInt(txtDodajFax.getText());
+        //Integer telefon = Integer.parseInt(txtDodajTelefon.getText());
+        String telefon = txtDodajTelefon.getText().toString();
+        //Integer fax = Integer.parseInt(txtDodajFax.getText());
+        String fax = jFormattedTextField3.getText().toString();
         String email = txtDodajEmail.getText();
         //---pokupljene vrijednosti---
         
@@ -320,14 +488,128 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
                 tip.setId(1);
                 
         //---namjestanje tipa---
-        if(!provjeri())
-        {
-            JOptionPane.showMessageDialog(null, "Neispravan unos", "Greška!", JOptionPane.INFORMATION_MESSAGE);
-        }
+      
+        //---IME---
+      if(v.ValidirajIme(txtDodajIme))
+      {
+          jLabel5.setVisible(true);
+          jLabel5.setToolTipText("Morate unijeti ime!");
+      }
+      else
+      {
+          jLabel5.setVisible(false);
+          jLabel5.setToolTipText("");
+      }
+      //---IME---
+      
+      //---PREZIME---
+      if(v.ValidirajPrezime(txtDodajPrezime))
+      {
+          jLabel12.setVisible(true);
+          jLabel12.setToolTipText("Morate unijeti prezime!");
+      }
+      else
+      {
+        jLabel12.setVisible(false);
+        jLabel12.setToolTipText("");
+      }
+      //---PREZIME---
+      
+      //---KorIME---
+      if(v.ValidirajKorIme(txtDodajKorIme))
+      {
+       jLabel13.setVisible(true);
+       jLabel13.setToolTipText("Morate unijeti korisnicko ime!");
+      }
+      else
+      {
+        jLabel13.setVisible(false);
+       jLabel13.setToolTipText("");
+      }
+      //---KorIME---
+      
+      //---LOZINKA---
+      if(v.ValidirajSifru(txtDodajLozinku))
+      {
+         jLabel14.setVisible(true);
+         jLabel14.setToolTipText("Morate unijeti sifur");
+      }
+      else
+      {
+         jLabel14.setVisible(false);
+         jLabel14.setToolTipText(""); 
+      }
+      //---LOZINKA---
+      
+      //---JMBG---
+      if(v.ValidirajJmbg(txtDodajJMBG))
+      {
+        jLabel15.setVisible(true);
+        jLabel15.setToolTipText("Morate unijeti ispravan JMBG sa 13 cifri!");
+      }
+      else
+      {
+        jLabel15.setVisible(false);
+        jLabel15.setToolTipText("");  
+      }
+      //---JMBG---
+      
+      //---ADRESA---
+      if(v.ValidirajAdresu(txtDodajAdresu))
+      {
+        jLabel16.setVisible(true);
+        jLabel16.setToolTipText("Morate unijeti adresu!");
+      }
+      else
+      {
+        jLabel16.setVisible(false);
+        jLabel16.setToolTipText("");  
+      }
+      //---ADRESA---
+      
+      //---TELEFON---
+      if(v.ValidirajTelefon(jFormattedTextField1))
+      {
+        jLabel17.setVisible(true);
+        jLabel17.setToolTipText("Morate unijeti broj telefona!");
+      }
+      else
+      {
+       jLabel17.setVisible(false);
+        jLabel17.setToolTipText("");
+      }
+      //---TELEFON---
+      
+      //---FAX---
+      if(v.ValidirajFax(jFormattedTextField3))
+      {
+        jLabel18.setVisible(true);
+        jLabel18.setToolTipText("Morate unijeti broj faxa/telefona!");
+      }
+      else
+      {
+        jLabel18.setVisible(false);
+        jLabel18.setToolTipText("");  
+      }
+      //---FAX---
+      
+      //---EMAIL---
+      if(v.ValidirajEmail(txtDodajEmail))
+      {
+          jLabel19.setVisible(true);
+          jLabel9.setToolTipText("Morate unijeti email!");
+      }
+      else
+      {
+        jLabel19.setVisible(false);
+          jLabel9.setToolTipText("");
+          
+      }
+      //---EMAIL---
+      
         
         
-        
-        if(ProvjeriJmbg(jmbg) && provjeri())
+        /*if(ProvjeriJmbg(jmbg) && provjeri())
         {
             Korisnik korisnik = new Korisnik();
             korisnik.setId(utils.getIdNumber() + 1); //ID
@@ -343,7 +625,7 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
             korisnik.setEmail(email);
             utils.ustekaj(korisnik);
             dispose();
-        }
+        }*/
         
         
         /*Korisnik k = new Korisnik();
@@ -372,14 +654,62 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(Character.isDigit((evt.getKeyChar())))
         {
+          jLabel5.setVisible(true);
+          jLabel5.setToolTipText("Nije moguće unijeti cifru!");
           System.out.println("entered...");
             evt.consume();  
         }
+        else
+        {
+          jLabel5.setVisible(false);
+          jLabel5.setToolTipText("");
+        }
     }//GEN-LAST:event_txtDodajImeKeyTyped
 
-    private void txtDodajFaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDodajFaxKeyTyped
+    private void jFormattedTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDodajFaxKeyTyped
+        if(!Character.isDigit(evt.getKeyChar())) 
+        {
+            System.out.println("entered...");
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField1KeyTyped
+
+    private void txtDodajPrezimeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDodajPrezimeKeyTyped
+        // TODO add your handling code here:
+        if(Character.isDigit((evt.getKeyChar())))
+        {
+          System.out.println("entered...");
+          jLabel12.setVisible(true);
+          jLabel12.setToolTipText("Nije moguce unijeti cifru!");
+            evt.consume();  
+        }
+        else
+        {
+            jLabel12.setVisible(false);
+          jLabel12.setToolTipText("");
+        }
+    }//GEN-LAST:event_txtDodajPrezimeKeyTyped
+
+    private void txtDodajJMBGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDodajJMBGKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != (char)8)  
+        {
+            jLabel15.setVisible(true);
+            jLabel15.setToolTipText("Dozvoljene su samo cifre!");
+            System.out.println("entered...");
+            evt.consume();
+        }
+        else
+        {
+            jLabel15.setVisible(false);
+            jLabel15.setToolTipText("");
+        }
+    }//GEN-LAST:event_txtDodajJMBGKeyTyped
+
+    private void jFormattedTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField3KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField3KeyTyped
 
     /**
      * @param args the command line arguments
@@ -420,20 +750,32 @@ public class DodajKorisnikaFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cmDodajTipKorisnika;
     private javax.swing.JButton jButton1;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbDodajImeErrorText;
+    private javax.swing.JLabel lbDodajPrezimeErrorText;
     private javax.swing.JTextField txtDodajAdresu;
     private javax.swing.JTextField txtDodajEmail;
-    private javax.swing.JTextField txtDodajFax;
     private javax.swing.JTextField txtDodajIme;
     private javax.swing.JTextField txtDodajJMBG;
     private javax.swing.JTextField txtDodajKorIme;

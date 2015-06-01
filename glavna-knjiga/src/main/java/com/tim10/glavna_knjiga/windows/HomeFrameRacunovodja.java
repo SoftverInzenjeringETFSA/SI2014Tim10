@@ -111,8 +111,6 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jLabel7.setText("Korisnicko ime:");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(510, 280, 196, 24);
-
-        jLabel8.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\SI2014Tim10\\glavna-knjiga\\images\\famehof-logo - Copy.png")); // NOI18N
         jPanel1.add(jLabel8);
         jLabel8.setBounds(110, 10, 540, 520);
 
@@ -189,8 +187,6 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jMenu2.setPreferredSize(new java.awt.Dimension(150, 24));
         jMenuBar1.add(jMenu2);
-
-        jMenu5.setIcon(new javax.swing.ImageIcon("D:\\workspace\\SI2014Tim10\\SI2014Tim10\\glavna-knjiga\\images\\logout.png")); // NOI18N
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -203,7 +199,7 @@ public class HomeFrameRacunovodja extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
