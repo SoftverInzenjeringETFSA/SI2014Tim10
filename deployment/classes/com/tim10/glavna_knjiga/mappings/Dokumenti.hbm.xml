@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 1, 2015 6:18:41 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.tim10.glavna_knjiga.mappings.Dokumenti" table="Dokumenti" catalog="Tim10">
+        <composite-id name="id" class="com.tim10.glavna_knjiga.mappings.DokumentiId">
+            <key-property name="id" type="int">
+                <column name="Id" />
+            </key-property>
+            <key-property name="vrstaDokumentaId" type="int">
+                <column name="VrstaDokumenta_Id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="vrstaDokumenta" class="com.tim10.glavna_knjiga.mappings.VrstaDokumenta" update="false" insert="false" fetch="select">
+            <column name="VrstaDokumenta_Id" not-null="true" />
+        </many-to-one>
+        <property name="naziv" type="string">
+            <column name="Naziv" length="45" />
+        </property>
+        <property name="opis" type="string">
+            <column name="Opis" length="45" />
+        </property>
+        <set name="stavkeNalogas" table="StavkeNaloga" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Dokumenti_Id" not-null="true" />
+                <column name="Dokumenti_VrstaDokumenta_Id" not-null="true" />
+            </key>
+            <one-to-many class="com.tim10.glavna_knjiga.mappings.StavkeNaloga" />
+        </set>
+    </class>
+</hibernate-mapping>
