@@ -1,7 +1,6 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
-jdbc.driverClassName=com.mysql.jdbc.Driver
 hibernate.connection.url=jdbc:mysql://localhost:3306/Tim10
 hibernate.connection.username=EtfSI2014
 hibernate.connection.password=2014SIEtf
