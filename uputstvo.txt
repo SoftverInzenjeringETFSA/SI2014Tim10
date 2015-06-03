@@ -1,0 +1,17 @@
+Ununtu pokretanje:
+
+1. Unzipovati file
+	unzip target.zip -d 'naziv direktorija...'
+2. Locirati se u direktorij
+	cd 'naziv direktorija'
+3. Pokrenuti program
+	java -jar glavna-knjiga-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+*. Po potrebi izmijeniti parametre pristupa bazi podataka
+	cd 'naziv direktorija'
+	nano db.properties
+
+Windows pokretanje:
+
+1. Unzip arhivu (.zip)
+2. Pokrenuti duplim klikom na .jar
+*. Po potrebi izmjestiti .jar ili izmijeniti parametre pristupa bazi podatak
